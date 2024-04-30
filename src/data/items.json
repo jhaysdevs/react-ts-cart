@@ -1,0 +1,50 @@
+[
+  {
+    "id": 24,
+    "name": "Electric Scooter",
+    "price": 469,
+    "imgUrl": "/imgs/products/electric-scooter.jpg"
+  },
+  {
+    "id": 34,
+    "name": "Mountain Bike",
+    "price": 1169,
+    "imgUrl": "/imgs/products/mountain-bike.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Home Office Bundle",
+    "price": 2469,
+    "imgUrl": "/imgs/products/macbook-pro-with-portable-monitor.jpg"
+  },
+  {
+    "id": 74,
+    "name": "Modern Office Chair",
+    "price": 199.99,
+    "imgUrl": "/imgs/products/modern-office-chair.jpg"
+  },
+  {
+    "id": 18,
+    "name": "Windows Laptop With Wacom Tablet",
+    "price": 769,
+    "imgUrl": "/imgs/products/windows-laptop-with-wacom.jpg"
+  },
+  {
+    "id": 44,
+    "name": "Michael Kors Watch",
+    "price": 269,
+    "imgUrl": "/imgs/products/michael-kors-watch.jpg"
+  },
+  {
+    "id": 54,
+    "name": "Vintage Alarm Clock",
+    "price": 24,
+    "imgUrl": "/imgs/products/vintage-alarm-clock.jpg"
+  },
+  {
+    "id": 64,
+    "name": "Doggo Beanie",
+    "price": 12,
+    "imgUrl": "/imgs/products/doggo-beanie.jpg"
+  }
+]
