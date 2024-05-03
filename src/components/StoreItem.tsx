@@ -56,8 +56,9 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
                 >
                   Remove
                 </Button>
-                </div>
-            </div>}
+              </div>
+            </div>
+          }
         </div>
       </Card.Body>
     </Card>
