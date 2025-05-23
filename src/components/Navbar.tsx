@@ -39,12 +39,19 @@ export function Navbar() {
               className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
               style={{
                 color: "white",
-                width: "1.5rem",
-                height: "1.4rem",
+                minWidth: "1.2rem",
+                minHeight: "1.2rem",
+                padding: "0.15rem",
                 position: "absolute",
                 bottom: 0,
                 right: 0,
                 transform: "translate(25%, 25%)",
+                fontSize: "clamp(0.65rem, 1.5vw, 0.75rem)",
+                lineHeight: 1,
+                aspectRatio: "1",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               {cartQuantity}

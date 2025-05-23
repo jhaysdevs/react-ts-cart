@@ -63,6 +63,19 @@ export function About() {
           </p>
         </div>
       </div>
+
+      {/* Call to Action Section */}
+      <div className="row mt-5">
+        <div className="col-lg-8 mx-auto text-center">
+          <h2 className="h5 mb-4 px-3">Ready to Shop?</h2>
+          <p className="small text-muted mb-4 px-4">
+            Explore our carefully curated collection of products and discover why our customers love shopping with us.
+          </p>
+          <a href="/store" className="btn btn-primary px-4 py-2">
+            Start Shopping
+          </a>
+        </div>
+      </div>
     </div>
   )
 }
