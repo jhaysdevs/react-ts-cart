@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export function Home() {
   return (
     <div className="container py-5">
@@ -47,9 +49,30 @@ export function Home() {
         </div>
       </div>
 
+      {/* About Section */}
+      <div className="row justify-content-center mb-5">
+        <div className="col-lg-8">
+          <div className="card border-0 shadow-sm">
+            <div className="card-body p-5 text-center">
+              <h2 className="h3 mb-4">Our Story</h2>
+              <p className="text-muted mb-4">
+                Founded with a passion for quality and customer satisfaction, we've grown from a small local shop 
+                to a trusted online destination for premium products. Our commitment to excellence and 
+                customer-first approach drives everything we do.
+              </p>
+              <Link to="/about" className="btn btn-outline-primary">
+                Learn More About Us
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Call to Action */}
       <div className="text-center">
-        <h2 className="h4 mb-4">Ready to Start Shopping?</h2>
+        <Link to="/store" className="text-decoration-none">
+          <h2 className="h4 mb-4 text-primary">Ready to Start Shopping 🛒?</h2>
+        </Link>
         <p className="text-muted mb-4">
           Browse our extensive collection of products and find exactly what you're looking for.
         </p>
