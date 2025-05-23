@@ -1,17 +1,31 @@
-# React + TypeScript + Vite
+# 🛒 React Shopping Cart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern shopping cart application built with React, TypeScript, and Vite. This project demonstrates a clean, type-safe implementation of a shopping cart with a focus on performance and developer experience.
 
-Currently, two official plugins are available:
+## Tech Stack
+
+- **React** - UI Library
+- **TypeScript** - Type Safety
+- **Vite** - Build Tool & Development Server
+- **ESLint** - Code Quality
+
+## Features
+
+- Type-safe shopping cart implementation
+- Fast development with Vite's HMR (Hot Module Replacement)
+- Modern React patterns and best practices
+- Strict TypeScript configuration for better code quality
+
+## Development Setup
+
+This project uses Vite for an optimized development experience. Two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## ESLint Configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
+For production-grade code quality, the project uses type-aware ESLint rules:
 
 ```js
 export default {
@@ -25,6 +39,14 @@ export default {
 }
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+The configuration includes:
+- TypeScript-aware linting with `@typescript-eslint/recommended-type-checked`
+- React-specific rules with `eslint-plugin-react`
+- Strict type checking for better code quality
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
+4. Build for production: `npm run build`
