@@ -39,7 +39,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
               + Add To Cart
             </Button>
           ) : <div
-                className="d-flex align-items-center flex-column"
+                className="d-flex align-items-center flex-row"
                 style={{ gap: '.5rem' }}
             >
               <Button onClick={() => decreaseCartQuantity(id)}>-</Button>
@@ -52,7 +52,8 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
                 <Button
                   onClick={() => removeFromCart(id)}
                   variant="danger"
-                  size="sm"
+                  size="md"
+                  style={{ height: '100%' }}
                 >
                   Remove
                 </Button>
