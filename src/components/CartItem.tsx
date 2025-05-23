@@ -14,11 +14,21 @@ export function CartItem({ id, quantity }: CartItemProps) {
   if (item === null || item === undefined) return null
 
   return (
-    <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
-      <img
-        src={item.imgUrl}
-        style={{ width: "125px", height: "75px", objectFit: "cover" }}
-      />
+    <Stack direction="horizontal" gap={2} className="d-flex align-items-start">
+      <div
+        className="d-flex align-items-start"
+        style={{
+          width: "125px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img
+          src={item.imgUrl}
+          style={{ width: "125px", height: "75px", objectFit: "cover" }}
+        />
+      </div>
       <div className="me-auto">
         <div>
           {item.name}{" "}
