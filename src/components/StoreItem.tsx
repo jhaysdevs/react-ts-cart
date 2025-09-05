@@ -1,5 +1,6 @@
 import { Card } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 import { useShoppingCart } from '../context/ShoppingCartContext'
 import { formatCurrency } from '../utilities/formatCurrency'
@@ -14,17 +15,33 @@ type StoreItemProps = {
 export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
   const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } =
     useShoppingCart()
+  const navigate = useNavigate()
   const quantity = getItemQuantity(id)
+
+  const handleProductClick = () => {
+    navigate(`/product/${id}`)
+  }
 
   return (
     <Card className='d-flex justify-content-end'>
-      <Card.Img variant='top' src={imgUrl} width='100%' style={{ objectFit: 'cover' }} />
+      <Card.Img
+        variant='top'
+        src={imgUrl}
+        width='100%'
+        style={{ objectFit: 'cover', cursor: 'pointer' }}
+        onClick={handleProductClick}
+        alt={name}
+      />
       <Card.Body className='d-flex flex-column justify-content-start'>
-        <Card.Title className='d-flex justify-content-space-between align-items-baseline mb-4'>
+        <Card.Title
+          className='d-flex justify-content-space-between align-items-baseline mb-4'
+          style={{ cursor: 'pointer' }}
+          onClick={handleProductClick}>
           {name}
-        </Card.Title>{' '}
-        {/* Display the item name */}
-        <Card.Text>Price: {formatCurrency(price)}</Card.Text> {/* Display the item price */}
+        </Card.Title>
+        <Card.Text style={{ cursor: 'pointer' }} onClick={handleProductClick}>
+          Price: {formatCurrency(price)}
+        </Card.Text>
         <div className='mt-auto'>
           {quantity === 0 ? (
             <Button className='w-100' onClick={() => increaseCartQuantity(id)}>
@@ -49,7 +66,7 @@ export function StoreItem({ id, name, price, imgUrl }: StoreItemProps) {
                 <Button
                   onClick={() => removeFromCart(id)}
                   variant='danger'
-                  size='md'
+                  size='sm'
                   style={{ height: '100%' }}>
                   Remove
                 </Button>

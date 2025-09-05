@@ -60,22 +60,20 @@ export function Store() {
   }
 
   return (
-    <>
-      <Masonry
-        breakpointCols={breakpointColumnsObj}
-        className='masonry-grid'
-        columnClassName='masonry-grid_column'>
-        {products.map((product) => (
-          <div key={product.id} className='masonry-item'>
-            <StoreItem
-              id={parseInt(product.id.replace(/-/g, '').substring(0, 8), 16)}
-              name={product.name}
-              price={product.price}
-              imgUrl={product.image}
-            />
-          </div>
-        ))}
-      </Masonry>
-    </>
+    <Masonry
+      breakpointCols={breakpointColumnsObj}
+      className='masonry-grid'
+      columnClassName='masonry-grid_column'>
+      {products.map((product) => (
+        <div key={product.id} className='masonry-item'>
+          <StoreItem
+            id={parseInt(product.id.replace(/-/g, '').substring(0, 8), 16)}
+            name={product.name}
+            price={product.price}
+            imgUrl={product.image}
+          />
+        </div>
+      ))}
+    </Masonry>
   )
 }

@@ -1,4 +1,5 @@
 import { Button, Stack } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 import { useProductsContext } from '../context/ProductsContext'
 import { useShoppingCart } from '../context/ShoppingCartContext'
@@ -12,12 +13,17 @@ type CartItemProps = {
 export function CartItem({ id, quantity }: CartItemProps) {
   const { removeFromCart } = useShoppingCart()
   const { products } = useProductsContext()
+  const navigate = useNavigate()
 
   // Convert numeric ID back to string format to find the product
   const productIdString = id.toString(16).padStart(8, '0')
   const product = products.find((p) => p.id.replace(/-/g, '').substring(0, 8) === productIdString)
 
   if (product === null || product === undefined) return null
+
+  const handleProductClick = () => {
+    navigate(`/product/${id}`)
+  }
 
   return (
     <Stack direction='horizontal' gap={2} className='d-flex align-items-start'>
@@ -29,9 +35,14 @@ export function CartItem({ id, quantity }: CartItemProps) {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <img src={product.image} style={{ width: '125px', height: '75px', objectFit: 'cover' }} />
+        <img
+          src={product.image}
+          style={{ width: '125px', height: '75px', objectFit: 'cover', cursor: 'pointer' }}
+          onClick={handleProductClick}
+          alt={product.name}
+        />
       </div>
-      <div className='me-auto'>
+      <div className='me-auto' style={{ cursor: 'pointer' }} onClick={handleProductClick}>
         <div>
           {product.name}{' '}
           {quantity > 1 && (
