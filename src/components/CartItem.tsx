@@ -11,7 +11,7 @@ type CartItemProps = {
 }
 
 export function CartItem({ id, quantity }: CartItemProps) {
-  const { removeFromCart } = useShoppingCart()
+  const { removeFromCart, closeCart } = useShoppingCart()
   const { products } = useProductsContext()
   const navigate = useNavigate()
 
@@ -22,6 +22,7 @@ export function CartItem({ id, quantity }: CartItemProps) {
   if (product === null || product === undefined) return null
 
   const handleProductClick = () => {
+    closeCart()
     navigate(`/product/${id}`)
   }
 
