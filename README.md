@@ -34,11 +34,12 @@ react-ts-cart/
 │   │   ├── ShoppingCart.tsx # Cart sidebar/modal component
 │   │   └── StoreItem.tsx    # Product display component
 │   ├── context/             # React Context for state management
+│   │   ├── ProductsContext.tsx    # Product data from API
 │   │   └── ShoppingCartContext.tsx # Cart state and operations
-│   ├── data/                # Static data and assets
-│   │   └── items.json       # Product catalog data
+│   ├── data/                # Static data and assets (removed - now using API)
 │   ├── hooks/               # Custom React hooks
-│   │   └── useLocalStorage.ts # Local storage persistence
+│   │   ├── useLocalStorage.ts # Local storage persistence
+│   │   └── useProducts.ts      # API data fetching hook
 │   ├── pages/               # Route components
 │   │   ├── About.tsx        # About page
 │   │   ├── Home.tsx         # Landing page
@@ -68,10 +69,12 @@ react-ts-cart/
 
 ### Product Catalog
 
-- **8 Sample Products** - Including electronics, furniture, accessories, and more
-- **Product Images** - High-quality product photos for each item
+- **Dynamic Product Data** - Fetches 1,400+ products from [JSONFakery API](https://jsonfakery.com/products) with real-time data
+- **Product Images** - High-quality Unsplash images for each item
 - **Price Display** - Formatted currency display with proper localization
 - **Grid Layout** - Responsive product grid using Bootstrap components
+- **Loading States** - Proper loading spinners and error handling with retry functionality
+- **Error Recovery** - Graceful error handling with user-friendly retry options
 
 ### User Experience
 
@@ -162,13 +165,47 @@ Custom formatting rules for consistent code style:
 }
 ```
 
+## 🔌 API Data Structure
+
+The application integrates with [JSONFakery](https://jsonfakery.com/products) to fetch realistic product data:
+
+```typescript
+// Product structure from JSONFakery API
+interface Product {
+  id: string // UUID format
+  name: string // Product name
+  price: number // Product price
+  image: string // Unsplash image URL
+  description: string // Product description
+  manufacturer: string // Brand/manufacturer
+  product_category: {
+    // Category information
+    id: string
+    name: string
+    created_at: string
+    updated_at: string
+  }
+  created_at: string
+  updated_at: string
+}
+```
+
+**Key Features:**
+
+- **1,400+ Products** - Large dataset for realistic testing
+- **High-Quality Images** - Unsplash integration for professional product photos
+- **Diverse Categories** - Multiple product categories and manufacturers
+- **Realistic Data** - Proper product names, descriptions, and pricing
+
 ## 🎯 Key Implementation Details
 
 ### State Management
 
-- **React Context API** - Centralized cart state management
-- **Custom Hooks** - `useShoppingCart()` for easy cart access
+- **React Context API** - Centralized cart and product state management
+- **Custom Hooks** - `useShoppingCart()` and `useProductsContext()` for easy access
 - **Local Storage** - Persistent cart data across sessions
+- **API Integration** - Real-time product data from JSONFakery API with automatic retry
+- **Data Transformation** - Seamless UUID to numeric ID conversion for cart compatibility
 
 ### Component Architecture
 
@@ -176,11 +213,20 @@ Custom formatting rules for consistent code style:
 - **TypeScript Interfaces** - Strict typing for all props and state
 - **Bootstrap Integration** - Responsive UI components
 
+### API Integration
+
+- **JSONFakery API** - External product data source with 1,400+ realistic products
+- **Error Handling** - Comprehensive error states with user-friendly retry mechanisms
+- **Loading States** - Smooth loading experience with Bootstrap spinners
+- **Data Mapping** - Automatic transformation between API format and component interfaces
+- **ID Conversion** - Seamless handling of UUID strings to numeric IDs for cart operations
+
 ### Performance Optimizations
 
 - **Vite HMR** - Fast development with hot module replacement
 - **SWC Compiler** - Fast TypeScript compilation
 - **Optimized Builds** - Production-ready bundle optimization
+- **Context Optimization** - Efficient state management with minimal re-renders
 
 ## 📱 Browser Support
 

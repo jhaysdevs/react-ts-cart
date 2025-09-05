@@ -1,7 +1,7 @@
 import { Button, Stack } from 'react-bootstrap'
 
+import { useProductsContext } from '../context/ProductsContext'
 import { useShoppingCart } from '../context/ShoppingCartContext'
-import storeItems from '../data/items.json'
 import { formatCurrency } from '../utilities/formatCurrency'
 
 type CartItemProps = {
@@ -11,8 +11,13 @@ type CartItemProps = {
 
 export function CartItem({ id, quantity }: CartItemProps) {
   const { removeFromCart } = useShoppingCart()
-  const item = storeItems.find((i) => i.id === id)
-  if (item === null || item === undefined) return null
+  const { products } = useProductsContext()
+
+  // Convert numeric ID back to string format to find the product
+  const productIdString = id.toString(16).padStart(8, '0')
+  const product = products.find((p) => p.id.replace(/-/g, '').substring(0, 8) === productIdString)
+
+  if (product === null || product === undefined) return null
 
   return (
     <Stack direction='horizontal' gap={2} className='d-flex align-items-start'>
@@ -24,11 +29,11 @@ export function CartItem({ id, quantity }: CartItemProps) {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <img src={item.imgUrl} style={{ width: '125px', height: '75px', objectFit: 'cover' }} />
+        <img src={product.image} style={{ width: '125px', height: '75px', objectFit: 'cover' }} />
       </div>
       <div className='me-auto'>
         <div>
-          {item.name}{' '}
+          {product.name}{' '}
           {quantity > 1 && (
             <span className='text-muted' style={{ fontSize: '.65rem' }}>
               x{quantity}
@@ -36,11 +41,11 @@ export function CartItem({ id, quantity }: CartItemProps) {
           )}
         </div>
         <div className='text-muted' style={{ fontSize: '.75rem' }}>
-          {formatCurrency(item.price)}
+          {formatCurrency(product.price)}
         </div>
       </div>
-      <div> {formatCurrency(item.price * quantity)}</div>
-      <Button variant='outline-danger' size='sm' onClick={() => removeFromCart(item.id)}>
+      <div> {formatCurrency(product.price * quantity)}</div>
+      <Button variant='outline-danger' size='sm' onClick={() => removeFromCart(id)}>
         &times;
       </Button>
     </Stack>

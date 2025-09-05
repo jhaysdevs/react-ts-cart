@@ -1,7 +1,7 @@
 import { Offcanvas, Stack } from 'react-bootstrap'
 
 import { useShoppingCart } from '../context/ShoppingCartContext'
-import storeItems from '../data/items.json'
+import { useProductsContext } from '../context/ProductsContext'
 import { formatCurrency } from '../utilities/formatCurrency'
 import { CartItem } from './CartItem'
 
@@ -11,6 +11,8 @@ type ShoppingCartProps = {
 
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { closeCart, cartItems } = useShoppingCart()
+  const { products } = useProductsContext()
+  
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement='end'>
       <Offcanvas.Header closeButton>
@@ -25,8 +27,12 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
             Total{' '}
             {formatCurrency(
               cartItems.reduce((total, cartItem) => {
-                const item = storeItems.find((i) => i.id === cartItem.id)
-                return total + (item?.price || 0) * cartItem.quantity
+                // Convert numeric ID back to string format to find the product
+                const productIdString = cartItem.id.toString(16).padStart(8, '0')
+                const product = products.find((p) => 
+                  p.id.replace(/-/g, '').substring(0, 8) === productIdString
+                )
+                return total + (product?.price || 0) * cartItem.quantity
               }, 0)
             )}
           </div>
