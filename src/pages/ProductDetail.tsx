@@ -70,7 +70,7 @@ export function ProductDetail() {
     <Container className='py-4'>
       <Row>
         <Col md={6}>
-          <Card className='h-100'>
+          <Card>
             <Card.Img
               variant='top'
               src={product.image}
