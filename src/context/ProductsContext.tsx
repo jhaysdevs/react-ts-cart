@@ -7,6 +7,9 @@ type ProductsContextType = {
   loading: boolean
   error: string | null
   refetch: () => void
+  loadMore: () => void
+  hasMore: boolean
+  isLoadingMore: boolean
 }
 
 const ProductsContext = createContext<ProductsContextType | undefined>(undefined)

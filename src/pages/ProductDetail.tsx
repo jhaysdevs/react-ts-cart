@@ -16,7 +16,7 @@ export function ProductDetail() {
   const productIdString = id ? parseInt(id).toString(16).padStart(8, '0') : ''
   const product = products.find((p) => p.id.replace(/-/g, '').substring(0, 8) === productIdString)
 
-  const quantity = id ? getItemQuantity(parseInt(id)) : 0
+  const quantity = product ? getItemQuantity(product.id) : 0
 
   if (loading) {
     return (
@@ -111,7 +111,7 @@ export function ProductDetail() {
                   <Button
                     className='w-100'
                     size='lg'
-                    onClick={() => increaseCartQuantity(parseInt(id!))}>
+                    onClick={() => product && increaseCartQuantity(product)}>
                     + Add To Cart
                   </Button>
                 ) : (
@@ -121,18 +121,18 @@ export function ProductDetail() {
                     <div
                       className='d-flex align-items-center justify-content-center'
                       style={{ gap: '1rem' }}>
-                      <Button size='lg' onClick={() => decreaseCartQuantity(parseInt(id!))}>
+                      <Button size='lg' onClick={() => product && decreaseCartQuantity(product.id)}>
                         -
                       </Button>
                       <span className='fs-4 text-center' style={{ minWidth: '120px' }}>
                         {quantity} in cart
                       </span>
-                      <Button size='lg' onClick={() => increaseCartQuantity(parseInt(id!))}>
+                      <Button size='lg' onClick={() => product && increaseCartQuantity(product)}>
                         +
                       </Button>
                     </div>
                     <Button
-                      onClick={() => removeFromCart(parseInt(id!))}
+                      onClick={() => product && removeFromCart(product.id)}
                       variant='danger'
                       size='lg'
                       className='w-100'>

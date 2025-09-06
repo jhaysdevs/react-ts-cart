@@ -1,29 +1,25 @@
 import { Button, Stack } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
-import { useProductsContext } from '../context/ProductsContext'
 import { useShoppingCart } from '../context/ShoppingCartContext'
 import { formatCurrency } from '../utilities/formatCurrency'
+import { Product } from '../hooks/useProducts'
 
 type CartItemProps = {
-  id: number
+  product: Product
   quantity: number
 }
 
-export function CartItem({ id, quantity }: CartItemProps) {
+export function CartItem({ product, quantity }: CartItemProps) {
   const { removeFromCart, closeCart } = useShoppingCart()
-  const { products } = useProductsContext()
   const navigate = useNavigate()
 
-  // Convert numeric ID back to string format to find the product
-  const productIdString = id.toString(16).padStart(8, '0')
-  const product = products.find((p) => p.id.replace(/-/g, '').substring(0, 8) === productIdString)
-
-  if (product === null || product === undefined) return null
+  // Convert product ID to numeric for navigation (keeping compatibility with existing routes)
+  const numericId = parseInt(product.id.replace(/-/g, '').substring(0, 8), 16)
 
   const handleProductClick = () => {
     closeCart()
-    navigate(`/product/${id}`)
+    navigate(`/product/${numericId}`)
   }
 
   return (
@@ -57,7 +53,7 @@ export function CartItem({ id, quantity }: CartItemProps) {
         </div>
       </div>
       <div> {formatCurrency(product.price * quantity)}</div>
-      <Button variant='outline-danger' size='sm' onClick={() => removeFromCart(id)}>
+      <Button variant='outline-danger' size='sm' onClick={() => removeFromCart(product.id)}>
         &times;
       </Button>
     </Stack>
