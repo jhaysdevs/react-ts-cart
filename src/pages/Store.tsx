@@ -1,11 +1,15 @@
-import { Alert, Spinner } from 'react-bootstrap'
+import { useEffect, useRef, useState } from 'react'
+import { Alert, Spinner, Container } from 'react-bootstrap'
 import Masonry from 'react-masonry-css'
 
-import { StoreItem } from '../components/StoreItem'
+import { AnimatedStoreItem } from '../components/AnimatedStoreItem'
 import { useProductsContext } from '../context/ProductsContext'
+import '../styles/store.css'
 
 export function Store() {
-  const { products, loading, error, refetch } = useProductsContext()
+  const { products, loading, error, refetch, loadMore, hasMore, isLoadingMore } = useProductsContext()
+  const observerRef = useRef<HTMLDivElement>(null)
+  const [observerEnabled, setObserverEnabled] = useState(false)
 
   const breakpointColumnsObj = {
     default: 4,
@@ -14,66 +18,170 @@ export function Store() {
     500: 1,
   }
 
+  // Enable intersection observer after initial load is complete
+  useEffect(() => {
+    if (!loading && products.length > 0) {
+      // Small delay to prevent immediate triggering
+      const timer = setTimeout(() => {
+        setObserverEnabled(true)
+      }, 500)
+      
+      return () => clearTimeout(timer)
+    }
+  }, [loading, products.length])
+
+  // Intersection Observer for infinite scroll
+  useEffect(() => {
+    if (!observerEnabled) {
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore && !isLoadingMore) {
+          loadMore()
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (observerRef.current) {
+      observer.observe(observerRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [observerEnabled, hasMore, isLoadingMore, loadMore])
+
   if (loading) {
     return (
-      <div
-        className='d-flex justify-content-center align-items-center'
-        style={{ minHeight: '400px' }}>
-        <div className='text-center'>
-          <Spinner animation='border' role='status' />
-          <div className='mt-3'>Loading products...</div>
+      <Container className='py-5'>
+        <div className='store-header text-center mb-5'>
+          <h1 className='mb-3'>Our Store</h1>
+          <p className='text-muted'>Discover amazing products</p>
         </div>
-      </div>
+        <div
+          className='d-flex justify-content-center align-items-center'
+          style={{ minHeight: '400px' }}>
+          <div className='text-center store-loading'>
+            <Spinner animation='border' role='status' className='store-loading-spinner' />
+            <div className='mt-3'>Loading products...</div>
+            <small className='text-muted'>Fetching all products for seamless browsing</small>
+          </div>
+        </div>
+      </Container>
     )
   }
 
   if (error) {
     return (
-      <div
-        className='d-flex justify-content-center align-items-center'
-        style={{ minHeight: '400px' }}>
-        <Alert variant='danger' className='text-center' style={{ maxWidth: '500px' }}>
-          <Alert.Heading>Error Loading Products</Alert.Heading>
-          <p>{error}</p>
-          <hr />
-          <div className='d-flex justify-content-end'>
-            <button className='btn btn-outline-danger' onClick={refetch}>
-              Try Again
-            </button>
-          </div>
-        </Alert>
-      </div>
+      <Container className='py-5'>
+        <div className='store-header text-center mb-5'>
+          <h1 className='mb-3'>Our Store</h1>
+          <p className='text-muted'>Discover amazing products</p>
+        </div>
+        <div
+          className='d-flex justify-content-center align-items-center'
+          style={{ minHeight: '400px' }}>
+          <Alert variant='danger' className='text-center' style={{ maxWidth: '500px' }}>
+            <Alert.Heading>Error Loading Products</Alert.Heading>
+            <p>{error}</p>
+            <hr />
+            <div className='d-flex justify-content-end'>
+              <button className='btn btn-outline-danger' onClick={refetch}>
+                Try Again
+              </button>
+            </div>
+          </Alert>
+        </div>
+      </Container>
     )
   }
 
   if (products.length === 0) {
     return (
-      <div
-        className='d-flex justify-content-center align-items-center'
-        style={{ minHeight: '400px' }}>
-        <Alert variant='info' className='text-center'>
-          <Alert.Heading>No Products Available</Alert.Heading>
-          <p>There are no products to display at the moment.</p>
-        </Alert>
-      </div>
+      <Container className='py-5'>
+        <div className='store-header text-center mb-5'>
+          <h1 className='mb-3'>Our Store</h1>
+          <p className='text-muted'>Discover amazing products</p>
+        </div>
+        <div
+          className='d-flex justify-content-center align-items-center'
+          style={{ minHeight: '400px' }}>
+          <Alert variant='info' className='text-center'>
+            <Alert.Heading>No Products Available</Alert.Heading>
+            <p>There are no products to display at the moment.</p>
+          </Alert>
+        </div>
+      </Container>
     )
   }
 
   return (
-    <Masonry
-      breakpointCols={breakpointColumnsObj}
-      className='masonry-grid'
-      columnClassName='masonry-grid_column'>
-      {products.map((product) => (
-        <div key={product.id} className='masonry-item'>
-          <StoreItem
-            id={parseInt(product.id.replace(/-/g, '').substring(0, 8), 16)}
-            name={product.name}
-            price={product.price}
-            imgUrl={product.image}
-          />
+    <Container className='py-4'>
+      <div className='store-header text-center mb-5'>
+        <h1 className='mb-3'>Our Store</h1>
+        <p className='text-muted'>Discover amazing products</p>
+      </div>
+      
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className='masonry-grid'
+        columnClassName='masonry-grid_column'>
+        {Array.isArray(products) ? products.map((product, index) => {
+          // Calculate grid position based on current viewport
+          const getGridPosition = () => {
+            // Get current breakpoint columns
+            const getCurrentColumns = () => {
+              if (window.innerWidth >= 1100) return 4
+              if (window.innerWidth >= 700) return 3
+              if (window.innerWidth >= 500) return 2
+              return 1
+            }
+            
+            const columns = getCurrentColumns()
+            const row = Math.floor(index / columns)
+            const col = index % columns
+            
+            return { row, col }
+          }
+
+          return (
+            <div key={product.id} className='masonry-item' data-id={product.id}>
+              <AnimatedStoreItem
+                product={product}
+                index={index}
+                gridPosition={getGridPosition()}
+              />
+            </div>
+          )
+        }) : null}
+      </Masonry>
+
+      {/* Loading indicator */}
+      {isLoadingMore && (
+        <div className='text-center py-5'>
+          <div className='store-loading'>
+            <div className='loading-animation-container'>
+              <div className='loading-dots'>
+                <div className='dot'></div>
+                <div className='dot'></div>
+                <div className='dot'></div>
+              </div>
+              <p className='text-muted mt-3 mb-0'>Loading more products...</p>
+            </div>
+          </div>
         </div>
-      ))}
-    </Masonry>
+      )}
+
+      {/* End of list indicator */}
+      {!hasMore && products.length > 0 && (
+        <Alert variant='info' className='text-center mt-4 store-load-more'>
+          <strong>You've reached the end!</strong> All available products are displayed.
+        </Alert>
+      )}
+
+      {/* Intersection observer target */}
+      {observerEnabled && <div ref={observerRef} style={{ height: '20px' }} />}
+    </Container>
   )
 }

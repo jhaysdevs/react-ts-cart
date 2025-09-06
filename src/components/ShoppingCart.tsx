@@ -1,7 +1,6 @@
 import { Offcanvas, Stack } from 'react-bootstrap'
 
 import { useShoppingCart } from '../context/ShoppingCartContext'
-import { useProductsContext } from '../context/ProductsContext'
 import { formatCurrency } from '../utilities/formatCurrency'
 import { CartItem } from './CartItem'
 
@@ -11,7 +10,6 @@ type ShoppingCartProps = {
 
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { closeCart, cartItems } = useShoppingCart()
-  const { products } = useProductsContext()
   
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement='end'>
@@ -20,20 +18,19 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
       </Offcanvas.Header>
       <Offcanvas.Body>
         <Stack gap={3}>
-          {cartItems.map((item) => (
-            <CartItem key={item.id} {...item} />
-          ))}
+          {cartItems
+            .filter(item => item.product && item.product.id) // Filter out any malformed items
+            .map((item) => (
+              <CartItem key={item.product.id} product={item.product} quantity={item.quantity} />
+            ))}
           <div className='ms-auto fw-bold fs-5'>
             Total{' '}
             {formatCurrency(
-              cartItems.reduce((total, cartItem) => {
-                // Convert numeric ID back to string format to find the product
-                const productIdString = cartItem.id.toString(16).padStart(8, '0')
-                const product = products.find((p) => 
-                  p.id.replace(/-/g, '').substring(0, 8) === productIdString
-                )
-                return total + (product?.price || 0) * cartItem.quantity
-              }, 0)
+              cartItems
+                .filter(item => item.product && item.product.id)
+                .reduce((total, cartItem) => {
+                  return total + cartItem.product.price * cartItem.quantity
+                }, 0)
             )}
           </div>
         </Stack>

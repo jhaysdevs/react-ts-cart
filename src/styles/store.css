@@ -1,0 +1,281 @@
+/* Store Page Animations */
+.store-item-card {
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.15s ease;
+  animation: slideInFromLeft 0.2s ease-out both;
+  overflow: hidden;
+}
+
+.store-item-card:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+}
+
+.store-item-card.updating {
+  transform: scale(0.98);
+}
+
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-image-container:hover .image-overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+.product-image-container:hover .overlay-content {
+  transform: translateY(0);
+}
+
+.product-title {
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.product-title:hover {
+  color: #007bff;
+}
+
+.product-price {
+  transition: color 0.2s ease;
+}
+
+.product-price:hover {
+  color: #0056b3 !important;
+}
+
+.add-to-cart-btn {
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.add-to-cart-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.quantity-controls {
+  animation: slideInUp 0.3s ease-out;
+}
+
+.quantity-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  border: 2px solid #dee2e6;
+}
+
+.quantity-btn:hover {
+  transform: scale(1.1);
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.quantity-display {
+  min-width: 60px;
+  text-align: center;
+  font-weight: 600;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.remove-btn {
+  transition: all 0.2s ease;
+}
+
+.remove-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* Loading animations */
+.store-loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.store-loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+.loading-animation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-dots .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #007bff;
+  animation: loadingDots 1.4s ease-in-out infinite both;
+}
+
+.loading-dots .dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.loading-dots .dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.loading-dots .dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* Masonry grid animations */
+.masonry-item {
+  animation: slideInFromLeft 0.2s ease-out both;
+}
+
+/* Store header animations */
+.store-header {
+  animation: slideInDown 0.6s ease-out;
+}
+
+.store-load-more {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Keyframe animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loadingDots {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .store-item-card {
+    margin-bottom: 1rem;
+  }
+  
+  .quantity-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .quantity-display {
+    min-width: 50px;
+    padding: 6px 10px;
+  }
+}
