@@ -1,5 +1,5 @@
-// Store Page Styles
-// Note: All variables are now imported from variables.scss via main.scss
+@use '../variables' as *;
+@use '../keyframes' as *;
 
 // Store Page Animations
 .store-item-card {

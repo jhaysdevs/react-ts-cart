@@ -1,4 +1,6 @@
-// Utility classes for common animations and effects
+@use 'variables' as *;
+@use 'keyframes' as *;
+
 
 // Animation utility classes
 .fade-in {

@@ -1,11 +1,11 @@
-// Main SCSS file that imports all global styles
-// This file serves as the entry point for all global SCSS imports
+// Use variables first (needed by other files)
+@use 'variables' as *;
 
-// Import variables first (needed by other files)
-@import 'variables.scss';
+// Use keyframes (animations)
+@use 'keyframes' as *;
 
-// Import keyframes (animations)
-@import 'keyframes.scss';
+// Use utility classes
+@use 'utilities' as *;
 
-// Import utility classes
-@import 'utilities.scss';
+// Use masonry grid styles
+@use 'masonry' as *;
