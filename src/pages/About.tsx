@@ -52,12 +52,12 @@ export function About() {
 
   return (
     <div className='about-page'>
-      {/* Hero Section */}
-      <div className='about-hero bg-gradient-success text-white py-5 mb-5'>
-        <Container>
-          <Row className='justify-content-center text-center'>
-            <Col lg={8}>
-              <div className='hero-content'>
+      {/* Hero Section - Full Width Background */}
+      <div className='about-hero'>
+        <div className='hero-content'>
+          <Container>
+            <Row className='justify-content-center text-center'>
+              <Col lg={8}>
                 <div className='about-icon mb-3' style={{ fontSize: '4rem' }}>
                   🏪
                 </div>
@@ -66,10 +66,10 @@ export function About() {
                   Discover our story, mission, and the values that drive us to deliver exceptional
                   shopping experiences.
                 </p>
-              </div>
-            </Col>
-          </Row>
-        </Container>
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </div>
 
       <Container className='pb-5'>
@@ -175,25 +175,25 @@ export function About() {
                       <div className='mb-3'>
                         <h6 className='text-primary mb-2'>🚀 Modern Technology Stack</h6>
                         <p className='text-muted small mb-0'>
-                          Built with cutting-edge web technologies including React, TypeScript, and 
-                          modern CSS frameworks to deliver lightning-fast performance and responsive 
+                          Built with cutting-edge web technologies including React, TypeScript, and
+                          modern CSS frameworks to deliver lightning-fast performance and responsive
                           design across all devices.
                         </p>
                       </div>
                       <div className='mb-3'>
                         <h6 className='text-success mb-2'>🔒 Enterprise-Grade Security</h6>
                         <p className='text-muted small mb-0'>
-                          Implementing the strictest security standards with end-to-end encryption, 
-                          secure payment processing, and comprehensive data protection protocols to 
+                          Implementing the strictest security standards with end-to-end encryption,
+                          secure payment processing, and comprehensive data protection protocols to
                           safeguard your personal information.
                         </p>
                       </div>
                       <div>
                         <h6 className='text-info mb-2'>✨ Intuitive User Experience</h6>
                         <p className='text-muted small mb-0'>
-                          Designed with user-centered principles featuring smart search, personalized 
-                          recommendations, and streamlined checkout processes that make shopping 
-                          effortless and enjoyable.
+                          Designed with user-centered principles featuring smart search,
+                          personalized recommendations, and streamlined checkout processes that make
+                          shopping effortless and enjoyable.
                         </p>
                       </div>
                     </div>
@@ -286,7 +286,7 @@ export function About() {
             <Card className='bg-primary text-white border-0 shadow cta-card'>
               <Card.Body className='p-5 text-center'>
                 <div className='cta-icon mb-4 d-flex justify-content-center'>
-                  <div 
+                  <div
                     className='cart-icon-wrapper d-flex align-items-center justify-content-center'
                     onClick={() => navigate('/cart')}>
                     🛒

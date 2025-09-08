@@ -1,8 +1,7 @@
+import '../styles/pages/Privacy.scss'
 import { useEffect } from 'react'
 
 import { Badge, Card, Col, Container, Row } from 'react-bootstrap'
-
-import '../styles/pages/Privacy.scss'
 
 export function Privacy() {
   useEffect(() => {
@@ -83,12 +82,12 @@ export function Privacy() {
 
   return (
     <div className='privacy-page'>
-      {/* Hero Section */}
-      <div className='privacy-hero bg-gradient-primary text-white py-5 mb-5'>
-        <Container>
-          <Row className='justify-content-center text-center'>
-            <Col lg={8}>
-              <div className='hero-content'>
+      {/* Hero Section - Full Width Background */}
+      <div className='privacy-hero'>
+        <div className='hero-content'>
+          <Container>
+            <Row className='justify-content-center text-center'>
+              <Col lg={8}>
                 <div className='privacy-icon mb-3' style={{ fontSize: '4rem' }}>
                   🛡️
                 </div>
@@ -97,17 +96,17 @@ export function Privacy() {
                   Your privacy is important to us. Learn how we collect, use, and protect your
                   information.
                 </p>
-              </div>
-            </Col>
-          </Row>
-        </Container>
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </div>
 
       <Container className='pb-5'>
         <Row>
           <Col lg={8} className='mx-auto'>
             {/* Privacy Overview Card */}
-            <Card className='mb-5 shadow-sm border-0 fade-in'>
+            <Card className='my-4 shadow-sm border-0 fade-in'>
               <Card.Body className='p-4'>
                 <div className='d-flex align-items-center mb-3'>
                   <div className='me-3' style={{ fontSize: '2rem' }}>

@@ -12,7 +12,7 @@ export function Home() {
 
   return (
     <div className='home-page'>
-      {/* Hero Section */}
+      {/* Hero Section - Full Width Background */}
       <div className='hero-section'>
         <div className='hero-content'>
           <Container>

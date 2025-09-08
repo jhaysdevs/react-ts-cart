@@ -109,7 +109,7 @@ export function Store() {
     return (
       <>
         <Masonry
-          breakpointCols={breakpointColumnsObj} 
+          breakpointCols={breakpointColumnsObj}
           className='masonry-grid'
           columnClassName='masonry-grid_column'>
           {Array.isArray(products)
@@ -174,12 +174,23 @@ export function Store() {
   }
 
   return (
-    <Container className='py-4'>
-      <div className='store-header text-center mb-5'>
-        <h1 className='mb-3'>Our Store</h1>
-        <p className='text-muted'>Discover amazing products</p>
+    <div className='store-page'>
+      {/* Hero Section - Full Width Background */}
+      <div className='store-hero'>
+        <div className='hero-content'>
+          <Container>
+            <div className='text-center'>
+              <div className='store-icon mb-3' style={{ fontSize: '4rem' }}>
+                🛍️
+              </div>
+              <h1 className='store-hero-title mb-3'>Our Store</h1>
+              <p className='store-hero-subtitle mb-0'>Discover amazing products</p>
+            </div>
+          </Container>
+        </div>
       </div>
-      {renderContent()}
-    </Container>
+
+      <Container className='py-4'>{renderContent()}</Container>
+    </div>
   )
 }

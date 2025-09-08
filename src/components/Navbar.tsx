@@ -7,7 +7,7 @@ export function Navbar() {
   const { cartQuantity } = useShoppingCart()
   const navigate = useNavigate()
   return (
-    <NavbarBs sticky='top' className='bg-white shadow-sm mb-3'>
+    <NavbarBs sticky='top' className='bg-white shadow-sm'>
       <Container>
         <Nav className='me-auto'>
           <Nav.Link to='/' as={NavLink}>
