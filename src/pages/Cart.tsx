@@ -1,32 +1,47 @@
-import { useMemo } from 'react'
-import { Container, Row, Col, Button, Stack } from 'react-bootstrap'
+import { useEffect, useMemo } from 'react'
+
+import { Button, Col, Container, Row, Stack } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
-import { useShoppingCart } from '../context/ShoppingCartContext'
-import { formatCurrency } from '../utilities/formatCurrency'
 import { AnimatedCartItem } from '../components/AnimatedCartItem'
-import '../styles/cart.css'
+import { useShoppingCart } from '../context/ShoppingCartContext'
+import '../styles/pages/Cart.scss'
+import { formatCurrency } from '../utilities/formatCurrency'
 
 export function Cart() {
   const { cartItems } = useShoppingCart()
   const navigate = useNavigate()
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }, [])
+
   // Consolidate cart items by ID to get unique items with total quantities
   const consolidatedCartItems = useMemo(() => {
     return cartItems
-      .filter(item => item.product && item.product.id) // Filter out any malformed items
-      .reduce((acc, cartItem) => {
-        const existingItem = acc.find(item => item.product.id === cartItem.product.id)
-        if (existingItem) {
-          existingItem.quantity += cartItem.quantity
-        } else {
-          acc.push({ ...cartItem })
-        }
-        return acc
-      }, [] as typeof cartItems)
+      .filter((item) => item.product && item.product.id) // Filter out any malformed items
+      .reduce(
+        (acc, cartItem) => {
+          const existingItem = acc.find((item) => item.product.id === cartItem.product.id)
+          if (existingItem) {
+            existingItem.quantity += cartItem.quantity
+          } else {
+            acc.push({ ...cartItem })
+          }
+          return acc
+        },
+        [] as typeof cartItems
+      )
   }, [cartItems])
 
-  // Calculate total
+  // Calculate totals
+  const totalItems = useMemo(() => {
+    return cartItems.reduce((acc, cartItem) => {
+      return acc + cartItem.quantity
+    }, 0)
+  }, [cartItems])
+
+  // Calculate total price
   const total = useMemo(() => {
     return consolidatedCartItems.reduce((total, cartItem) => {
       return total + cartItem.product.price * cartItem.quantity
@@ -41,19 +56,16 @@ export function Cart() {
         <Row className='justify-content-center'>
           <Col md={8} className='text-center'>
             <div className='cart-empty-animation'>
-              <div className='empty-cart-icon mb-4'>
-                🛒
-              </div>
+              <div className='empty-cart-icon mb-4'>🛒</div>
               <h2 className='mb-3'>Your cart is empty</h2>
               <p className='text-muted mb-4'>
                 Looks like you haven't added any items to your cart yet.
               </p>
-              <Button 
-                variant='primary' 
+              <Button
+                variant='primary'
                 size='lg'
                 onClick={() => navigate('/store')}
-                className='bounce-in'
-              >
+                className='bounce-in'>
                 Start Shopping
               </Button>
             </div>
@@ -69,9 +81,11 @@ export function Cart() {
         <Col>
           <div className='cart-header slide-in-down'>
             <h1 className='mb-4'>Shopping Cart</h1>
-            <p className='text-muted mb-4'>
-              {consolidatedCartItems.length} {consolidatedCartItems.length === 1 ? 'item' : 'items'} in your cart
-            </p>
+            {totalItems > 0 && (
+              <p className='text-muted mb-4'>
+                <strong>{totalItems}</strong> item{totalItems > 1 ? 's' : ''} in your cart
+              </p>
+            )}
           </div>
         </Col>
       </Row>
@@ -85,9 +99,8 @@ export function Cart() {
                   key={item.product.id}
                   className='cart-item-wrapper'
                   style={{
-                    animationDelay: `${index * 0.1}s`
-                  }}
-                >
+                    animationDelay: `${index * 0.1}s`,
+                  }}>
                   <AnimatedCartItem product={item.product} quantity={item.quantity} />
                 </div>
               ))}
@@ -103,7 +116,9 @@ export function Cart() {
               </div>
               <div className='card-body'>
                 <div className='d-flex justify-content-between mb-2'>
-                  <span>Items ({consolidatedCartItems.length})</span>
+                  <span>
+                    Items (<strong>{totalItems}</strong>)
+                  </span>
                   <span>{formatCurrency(total)}</span>
                 </div>
                 <div className='d-flex justify-content-between mb-2'>
@@ -115,20 +130,18 @@ export function Cart() {
                   <strong>Total</strong>
                   <strong>{formatCurrency(total)}</strong>
                 </div>
-                <Button 
-                  variant='success' 
-                  size='lg' 
+                <Button
+                  variant='success'
+                  size='lg'
                   className='w-100 mb-2'
-                  onClick={() => navigate('/checkout')}
-                >
+                  onClick={() => navigate('/checkout')}>
                   Proceed to Checkout
                 </Button>
-                <Button 
-                  variant='outline-primary' 
-                  size='lg' 
+                <Button
+                  variant='outline-primary'
+                  size='lg'
                   className='w-100'
-                  onClick={() => navigate('/store')}
-                >
+                  onClick={() => navigate('/store')}>
                   Continue Shopping
                 </Button>
               </div>
@@ -136,7 +149,6 @@ export function Cart() {
           </div>
         </Col>
       </Row>
-
     </Container>
   )
 }
