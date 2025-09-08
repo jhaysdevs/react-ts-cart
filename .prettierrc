@@ -14,7 +14,7 @@
   "sortingMethod": "alphabetical",
   "overrides": [
     {
-      "files": ["*.htm", "*.html", "*.css", "*.less", "*.scss"],
+      "files": ["*.htm", "*.html", "*.css", "*.less"],
       "options": {
         "singleQuote": false
       }

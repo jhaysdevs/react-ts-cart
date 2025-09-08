@@ -1,7 +1,6 @@
 @use '../variables' as *;
 @use '../keyframes' as *;
 
-
 // Cart Page Animations
 .cart-empty-animation {
   animation: fadeInUp 0.8s ease-out;
@@ -61,7 +60,6 @@
     }
   }
 }
-
 
 // Cart Item Card Styles
 .cart-item-card {

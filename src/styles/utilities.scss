@@ -1,7 +1,6 @@
 @use 'variables' as *;
 @use 'keyframes' as *;
 
-
 // Animation utility classes
 .fade-in {
   animation: fadeInUp 0.8s ease forwards;

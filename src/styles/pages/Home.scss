@@ -11,6 +11,9 @@
   position: relative;
   overflow: hidden;
   padding: 100px 0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
 
   &::before {
     content: '';
@@ -39,7 +42,6 @@
   color: white;
   animation: fadeInUp 0.8s ease 0.2s both;
 }
-
 
 .hero-subtitle {
   font-size: 1.25rem;
@@ -156,6 +158,10 @@
 }
 
 @media (max-width: 768px) {
+  .hero-section {
+    padding: 60px 0;
+  }
+
   .hero-title {
     font-size: 2.5rem;
   }

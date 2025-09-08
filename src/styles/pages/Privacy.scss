@@ -11,6 +11,9 @@
   position: relative;
   overflow: hidden;
   padding: 100px 0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
 
   &::before {
     content: '';
@@ -47,13 +50,10 @@
   }
 }
 
-
 .privacy-icon {
   opacity: 0;
   animation: fadeInDown 0.8s ease forwards;
 }
-
-
 
 .lead {
   opacity: 0;
@@ -70,3 +70,13 @@
   }
 }
 
+// Responsive adjustments
+@media (max-width: 768px) {
+  .privacy-hero {
+    padding: 60px 0;
+  }
+
+  .privacy-hero h1 {
+    font-size: 2.5rem;
+  }
+}
