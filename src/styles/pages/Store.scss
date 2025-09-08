@@ -1,0 +1,200 @@
+// Store Page Styles
+// Note: All variables are now imported from variables.scss via main.scss
+
+// Store Page Animations
+.store-item-card {
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px $shadow-light;
+  transition: $transition-fast;
+  animation: slideInFromLeft 0.2s ease-out both;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 8px 25px $shadow-medium;
+    transform: translateY(-5px);
+  }
+
+  &.updating {
+    transform: scale(0.98);
+  }
+}
+
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity $transition-slow;
+
+    .overlay-content {
+      color: white;
+      font-weight: 600;
+      text-align: center;
+      transform: translateY(10px);
+      transition: transform $transition-slow;
+    }
+  }
+
+  &:hover {
+    .image-overlay {
+      opacity: 1;
+
+      .overlay-content {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+.product-title {
+  color: $text-color;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.product-price {
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $primary-hover !important;
+  }
+}
+
+.add-to-cart-btn {
+  transition: $transition-fast;
+  font-weight: 600;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  }
+}
+
+.quantity-controls {
+  animation: slideInUp 0.3s ease-out;
+}
+
+.quantity-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: $transition-fast;
+  border: 2px solid #dee2e6;
+
+  &:hover {
+    transform: scale(1.1);
+    border-color: $primary-color;
+    color: $primary-color;
+  }
+}
+
+.quantity-display {
+  min-width: 60px;
+  text-align: center;
+  font-weight: 600;
+  padding: 8px 12px;
+  background-color: $background-light;
+  border-radius: 8px;
+  border: 1px solid $border-color;
+}
+
+.remove-btn {
+  transition: $transition-fast;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+  }
+}
+
+// Loading animations
+.store-loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.store-loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+.loading-animation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: $primary-color;
+    animation: loadingDots 1.4s ease-in-out infinite both;
+
+    &:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0s;
+    }
+  }
+}
+
+// Masonry grid animations
+.masonry-item {
+  animation: slideInFromLeft 0.2s ease-out both;
+}
+
+// Store header animations
+.store-header {
+  animation: slideInDown 0.6s ease-out;
+}
+
+.store-load-more {
+  animation: fadeIn 0.5s ease-out;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .store-item-card {
+    margin-bottom: 1rem;
+  }
+  
+  .quantity-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .quantity-display {
+    min-width: 50px;
+    padding: 6px 10px;
+  }
+}

@@ -1,0 +1,34 @@
+// Masonry Grid Styles
+// Define variables locally to avoid import issues
+$gutter-size: 16px;
+$gutter-size-mobile: 8px;
+
+.masonry-grid {
+  display: flex;
+  margin-left: -#{$gutter-size}; // gutter size offset
+  width: auto;
+
+  &_column {
+    padding-left: $gutter-size; // gutter size
+    background-clip: padding-box;
+  }
+}
+
+.masonry-item {
+  margin-bottom: $gutter-size; // space between items
+}
+
+// Responsive adjustments
+@media (max-width: 500px) {
+  .masonry-grid {
+    margin-left: -#{$gutter-size-mobile};
+
+    &_column {
+      padding-left: $gutter-size-mobile;
+    }
+  }
+
+  .masonry-item {
+    margin-bottom: $gutter-size-mobile;
+  }
+}

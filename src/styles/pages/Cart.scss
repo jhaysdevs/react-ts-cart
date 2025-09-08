@@ -1,0 +1,141 @@
+// Cart Page Styles with nested SCSS
+
+// Cart Page Animations
+.cart-empty-animation {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.empty-cart-icon {
+  font-size: 4rem;
+  animation: bounce 2s infinite;
+}
+
+.cart-header {
+  animation: slideInDown 0.6s ease-out;
+}
+
+.cart-item-wrapper {
+  animation: slideInLeft 0.2s ease-out both;
+}
+
+.cart-summary {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.loading-spinner {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading-animation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: $primary-color;
+    animation: loadingDots 1.4s ease-in-out infinite both;
+
+    &:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0s;
+    }
+  }
+}
+
+
+// Cart Item Card Styles
+.cart-item-card {
+  border: 1px solid #e9ecef;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+  transition: $transition-fast;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+
+  &.removing {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  &.updating {
+    transform: scale(0.98);
+  }
+}
+
+.product-name {
+  color: #333;
+  font-weight: 600;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.quantity-controls {
+  margin-top: 8px;
+}
+
+.quantity-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: $transition-fast;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.quantity-display {
+  min-width: 30px;
+  text-align: center;
+  font-weight: 600;
+  padding: 4px 8px;
+  background-color: $light-color;
+  border-radius: 6px;
+}
+
+.remove-btn {
+  transition: $transition-fast;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.item-total {
+  color: $success-color;
+}
+
+.product-image-container {
+  transition: $transition-fast;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}

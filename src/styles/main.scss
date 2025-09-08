@@ -1,0 +1,11 @@
+// Main SCSS file that imports all global styles
+// This file serves as the entry point for all global SCSS imports
+
+// Import variables first (needed by other files)
+@import 'variables.scss';
+
+// Import keyframes (animations)
+@import 'keyframes.scss';
+
+// Import utility classes
+@import 'utilities.scss';

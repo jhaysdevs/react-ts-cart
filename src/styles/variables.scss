@@ -1,0 +1,41 @@
+// SASS Variables for consistent styling
+$primary-color: #007bff;
+$success-color: #28a745;
+$info-color: #17a2b8;
+$warning-color: #ffc107;
+$danger-color: #dc3545;
+$secondary-color: #6c757d;
+$dark-color: #343a40;
+$light-color: #f8f9fa;
+
+$yellow: #ffc759;
+$red: #ff7b9c;
+$dark-gray: #607196;
+$gray: #babfd1;
+$light-gray: #e8e9ed;
+
+// Transitions
+$transition-slow: all 0.3s ease;
+$transition-fast: all 0.2s ease;
+
+// Border radius
+$border-radius: 0.25rem;
+$border-radius-lg: 0.3rem;
+$border-radius-xl: 0.5rem;
+
+// Shadows
+$shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+$shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+$shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+$shadow-xl: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+
+// Additional UI Variables
+$border-color: #e9ecef;
+$primary-hover: #0056b3;
+$danger-hover: #dc3545;
+$text-color: #333;
+$background-light: #f8f9fa;
+$shadow-light: rgba(0, 0, 0, 0.1);
+$shadow-medium: rgba(0, 0, 0, 0.15);
+
+

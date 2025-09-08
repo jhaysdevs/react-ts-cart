@@ -1,0 +1,70 @@
+// Utility classes for common animations and effects
+
+// Animation utility classes
+.fade-in {
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.bounce-in {
+  animation: bounceIn 0.8s ease-out;
+}
+
+// Transition utility classes
+.transition {
+  transition: $transition-slow;
+}
+
+.transition-fast {
+  transition: $transition-fast;
+}
+
+// Text utility classes
+.text-gradient {
+  background: linear-gradient(45deg, $yellow, #ffed4e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Background gradient utility classes
+.bg-gradient-primary {
+  background: linear-gradient(135deg, $primary-color 0%, #764ba2 100%);
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, $success-color 0%, #20c997 100%);
+}
+
+// Border radius utility classes
+.rounded {
+  border-radius: $border-radius;
+}
+
+.rounded-lg {
+  border-radius: $border-radius-lg;
+}
+
+.rounded-xl {
+  border-radius: $border-radius-xl;
+}
+
+// Shadow utility classes
+.shadow-sm {
+  box-shadow: $shadow-sm;
+}
+
+.shadow-md {
+  box-shadow: $shadow-md;
+}
+
+.shadow-lg {
+  box-shadow: $shadow-lg;
+}
+
+.shadow-xl {
+  box-shadow: $shadow-xl;
+}
+
+// Note: Masonry Grid styles are defined in masonry.scss
