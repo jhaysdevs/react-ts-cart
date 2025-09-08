@@ -131,18 +131,18 @@ export function Cart() {
                   <strong>{formatCurrency(total)}</strong>
                 </div>
                 <Button
-                  variant='success'
-                  size='lg'
-                  className='w-100 mb-2'
-                  onClick={() => navigate('/checkout')}>
-                  Proceed to Checkout
-                </Button>
-                <Button
-                  variant='outline-primary'
+                  variant='primary'
                   size='lg'
                   className='w-100'
                   onClick={() => navigate('/store')}>
                   Continue Shopping
+                </Button>
+                <Button
+                  variant='success'
+                  size='lg'
+                  className='w-100 mt-2'
+                  onClick={() => navigate('/checkout')}>
+                  Proceed to Checkout
                 </Button>
               </div>
             </div>
