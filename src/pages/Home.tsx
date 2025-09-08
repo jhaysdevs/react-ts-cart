@@ -1,82 +1,207 @@
+import { useEffect } from 'react'
+
+import { Badge, Button, Card, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
+import '../styles/pages/Home.scss'
+
 export function Home() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }, [])
+
   return (
-    <div className='container py-5'>
+    <div className='home-page'>
       {/* Hero Section */}
-      <div className='text-center mb-5'>
-        <h1 className='display-4 mb-4'>Welcome to Our Store</h1>
-        <p className='lead'>
-          Discover our curated collection of premium products at unbeatable prices. Shop with
-          confidence and enjoy a seamless shopping experience.
-        </p>
+      <div className='hero-section'>
+        <div className='hero-content'>
+          <Container>
+            <Row className='justify-content-center text-center'>
+              <Col lg={10}>
+                <div className='hero-badge mb-3'>
+                  <Badge bg='primary' className='px-3 py-2'>
+                    🎉 New Arrivals Daily
+                  </Badge>
+                </div>
+                <h1 className='hero-title mb-4'>
+                  Discover Amazing Products
+                  <br />
+                  <span className='text-gradient'>At Unbeatable Prices</span>
+                </h1>
+                <p className='hero-subtitle mb-5'>
+                  Shop from our curated collection of premium products with fast shipping, secure
+                  payments, and exceptional customer service. Your satisfaction is our priority.
+                </p>
+                <div className='hero-buttons'>
+                  <Link to='/store'>
+                    <Button variant='primary' size='lg' className='me-3 hero-btn'>
+                      🛍️ Start Shopping
+                    </Button>
+                  </Link>
+                  <Link to='/about'>
+                    <Button variant='outline-light' size='lg' className='hero-btn'>
+                      Learn More
+                    </Button>
+                  </Link>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </div>
 
       {/* Features Section */}
-      <div className='row g-4 mb-5'>
-        <div className='col-md-4'>
-          <div className='card h-100 border-0 shadow-sm'>
-            <div className='card-body text-center'>
-              <h3 className='h5 mb-3'>Quality Products</h3>
-              <p className='text-muted'>
-                We carefully select each item to ensure the highest quality standards for our
-                customers.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className='col-md-4'>
-          <div className='card h-100 border-0 shadow-sm'>
-            <div className='card-body text-center'>
-              <h3 className='h5 mb-3'>Fast Shipping</h3>
-              <p className='text-muted'>
-                Enjoy quick and reliable delivery to your doorstep with our efficient shipping
-                service.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className='col-md-4'>
-          <div className='card h-100 border-0 shadow-sm'>
-            <div className='card-body text-center'>
-              <h3 className='h5 mb-3'>Secure Shopping</h3>
-              <p className='text-muted'>
-                Shop with peace of mind knowing your transactions are protected with advanced
-                security measures.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Container className='py-5'>
+        <Row className='text-center mb-5'>
+          <Col>
+            <h2 className='section-title mb-3'>Why Choose Us?</h2>
+            <p className='section-subtitle'>
+              We're committed to providing the best shopping experience possible
+            </p>
+          </Col>
+        </Row>
 
-      {/* About Section */}
-      <div className='row justify-content-center mb-5'>
-        <div className='col-lg-8'>
-          <div className='card border-0 shadow-sm'>
-            <div className='card-body p-5 text-center'>
-              <h2 className='h3 mb-4'>Our Story</h2>
-              <p className='text-muted mb-4'>
-                Founded with a passion for quality and customer satisfaction, we've grown from a
-                small local shop to a trusted online destination for premium products. Our
-                commitment to excellence and customer-first approach drives everything we do.
-              </p>
-              <Link to='/about' className='btn btn-outline-primary'>
-                Learn More About Us
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+        <Row className='g-4 mb-5'>
+          <Col md={4}>
+            <Card className='feature-card h-100 border-0'>
+              <Card.Body className='text-center p-4'>
+                <div className='feature-icon mb-3'>🏆</div>
+                <h3 className='h5 mb-3'>Premium Quality</h3>
+                <p className='text-muted'>
+                  Every product is carefully selected and tested to meet our high quality standards.
+                  We partner with trusted brands to bring you the best.
+                </p>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={4}>
+            <Card className='feature-card h-100 border-0'>
+              <Card.Body className='text-center p-4'>
+                <div className='feature-icon mb-3'>🚚</div>
+                <h3 className='h5 mb-3'>Lightning Fast Shipping</h3>
+                <p className='text-muted'>
+                  Get your orders delivered quickly with our efficient shipping network. Most orders
+                  arrive within 2-3 business days.
+                </p>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={4}>
+            <Card className='feature-card h-100 border-0'>
+              <Card.Body className='text-center p-4'>
+                <div className='feature-icon mb-3'>🔒</div>
+                <h3 className='h5 mb-3'>Secure & Safe</h3>
+                <p className='text-muted'>
+                  Your data and payments are protected with bank-level security. Shop with
+                  confidence knowing your information is safe.
+                </p>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
 
-      {/* Call to Action */}
-      <div className='text-center'>
-        <Link to='/store' className='text-decoration-none'>
-          <h2 className='h4 mb-4 text-primary'>Ready to Start Shopping 🛒?</h2>
-        </Link>
-        <p className='text-muted mb-4'>
-          Browse our extensive collection of products and find exactly what you're looking for.
-        </p>
-      </div>
+        {/* Stats Section */}
+        <Row className='g-4 mb-5'>
+          <Col md={3}>
+            <Card className='stat-card border-0 text-center'>
+              <Card.Body className='p-4'>
+                <div className='stat-number'>10K+</div>
+                <div className='stat-label'>Happy Customers</div>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={3}>
+            <Card className='stat-card border-0 text-center'>
+              <Card.Body className='p-4'>
+                <div className='stat-number'>500+</div>
+                <div className='stat-label'>Products</div>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={3}>
+            <Card className='stat-card border-0 text-center'>
+              <Card.Body className='p-4'>
+                <div className='stat-number'>24/7</div>
+                <div className='stat-label'>Support</div>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={3}>
+            <Card className='stat-card border-0 text-center'>
+              <Card.Body className='p-4'>
+                <div className='stat-number'>99%</div>
+                <div className='stat-label'>Satisfaction</div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+
+        {/* Quick Links Section */}
+        <Row className='mb-5'>
+          <Col>
+            <Card className='quick-links-card border-0'>
+              <Card.Body className='p-5 text-center'>
+                <h2 className='h3 mb-4'>Explore Our Store</h2>
+                <p className='text-muted mb-4'>
+                  Discover everything we have to offer and learn more about our company
+                </p>
+                <Row className='g-3 justify-content-center'>
+                  <Col md={3}>
+                    <Link to='/store' className='text-decoration-none'>
+                      <Button variant='outline-primary' className='w-100 quick-link-btn'>
+                        🛒 Browse Products
+                      </Button>
+                    </Link>
+                  </Col>
+                  <Col md={3}>
+                    <Link to='/about' className='text-decoration-none'>
+                      <Button variant='outline-success' className='w-100 quick-link-btn'>
+                        📖 Our Story
+                      </Button>
+                    </Link>
+                  </Col>
+                  <Col md={3}>
+                    <Link to='/privacy' className='text-decoration-none'>
+                      <Button variant='outline-info' className='w-100 quick-link-btn'>
+                        🔒 Privacy Policy
+                      </Button>
+                    </Link>
+                  </Col>
+                </Row>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+
+        {/* Newsletter Section */}
+        <Row className='justify-content-center'>
+          <Col lg={8}>
+            <Card className='newsletter-card border-0'>
+              <Card.Body className='p-5 text-center'>
+                <h2 className='h3 mb-3'>Stay Updated</h2>
+                <p className='text-muted mb-4'>
+                  Get the latest updates on new products, exclusive deals, and special offers
+                </p>
+                <div className='newsletter-form'>
+                  <div className='input-group mb-3'>
+                    <input
+                      type='email'
+                      className='form-control'
+                      placeholder='Enter your email address'
+                    />
+                    <Button variant='primary' className='newsletter-btn'>
+                      Subscribe
+                    </Button>
+                  </div>
+                  <small className='text-muted'>
+                    We respect your privacy. Unsubscribe at any time.
+                  </small>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     </div>
   )
 }
