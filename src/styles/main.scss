@@ -9,3 +9,11 @@
 
 // Use masonry grid styles
 @use 'masonry' as *;
+
+// Page-specific styles
+@use 'pages/Home' as *;
+@use 'pages/Store' as *;
+@use 'pages/Cart' as *;
+@use 'pages/About' as *;
+@use 'pages/Privacy' as *;
+@use 'pages/ProductDetail' as *;

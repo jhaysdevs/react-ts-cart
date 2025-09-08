@@ -51,6 +51,12 @@ react-ts-cart/
 │   │   └── Store.tsx        # Product catalog with masonry grid
 │   ├── styles/              # SCSS styling system
 │   │   ├── pages/           # Page-specific styles
+│   │   │   ├── About.scss           # About page styles with hero section and animations
+│   │   │   ├── Cart.scss            # Shopping cart page styles and item animations
+│   │   │   ├── Home.scss            # Landing page styles with hero and feature sections
+│   │   │   ├── Privacy.scss         # Privacy policy page styles and layout
+│   │   │   ├── ProductDetail.scss   # Product detail page with image and info cards
+│   │   │   └── Store.scss           # Product catalog styles with masonry grid
 │   │   ├── keyframes.scss   # Animation keyframes
 │   │   ├── main.scss        # Main stylesheet imports
 │   │   ├── masonry.scss     # Masonry grid layout styles
