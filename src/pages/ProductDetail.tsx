@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import { Alert, Button, Card, Col, Container, Row, Spinner } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -11,6 +13,10 @@ export function ProductDetail() {
   const { products, loading, error } = useProductsContext()
   const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } =
     useShoppingCart()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }, [])
 
   // Convert numeric ID back to string format to find the product
   const productIdString = id ? parseInt(id).toString(16).padStart(8, '0') : ''
@@ -55,7 +61,7 @@ export function ProductDetail() {
           <hr />
           <div className='d-flex justify-content-center gap-2'>
             <Button variant='outline-primary' onClick={() => navigate('/store')}>
-              Back to Store
+              Continue Shopping
             </Button>
             <Button variant='primary' onClick={() => navigate('/')}>
               Go Home
@@ -144,13 +150,13 @@ export function ProductDetail() {
 
               <div className='mt-3 d-flex gap-2'>
                 <Button
-                  variant='outline-secondary'
+                  variant='outline-primary'
                   onClick={() => navigate('/store')}
                   className='flex-fill'>
-                  Back to Store
+                  Continue Shopping
                 </Button>
                 <Button
-                  variant='outline-primary'
+                  variant='outline-secondary'
                   onClick={() => navigate('/')}
                   className='flex-fill'>
                   Go Home
