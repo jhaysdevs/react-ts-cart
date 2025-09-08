@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useShoppingCart } from '../context/ShoppingCartContext'
 import { formatCurrency } from '../utilities/formatCurrency'
 import { Product } from '../hooks/useProducts'
-import '../styles/store.css'
+import '../styles/pages/Store.scss'
 
 type AnimatedStoreItemProps = {
   product: Product

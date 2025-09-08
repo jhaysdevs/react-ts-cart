@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { Button, Stack, Card } from 'react-bootstrap'
+
+import { Button, Card, Stack } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import { useShoppingCart } from '../context/ShoppingCartContext'
-import { formatCurrency } from '../utilities/formatCurrency'
 import { Product } from '../hooks/useProducts'
-import '../styles/cart.css'
+import '../styles/pages/Cart.scss'
+import { formatCurrency } from '../utilities/formatCurrency'
 
 type AnimatedCartItemProps = {
   product: Product
@@ -45,14 +46,13 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
   }
 
   return (
-    <Card 
+    <Card
       className={`cart-item-card ${isRemoving ? 'removing' : ''} ${isUpdating ? 'updating' : ''}`}
-      style={{ 
+      style={{
         transition: 'all 0.3s ease',
         transform: isRemoving ? 'translateX(-100%)' : 'translateX(0)',
-        opacity: isRemoving ? 0 : 1
-      }}
-    >
+        opacity: isRemoving ? 0 : 1,
+      }}>
       <Card.Body>
         <Stack direction='horizontal' gap={3} className='d-flex align-items-center'>
           <div
@@ -66,7 +66,7 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
               cursor: 'pointer',
               borderRadius: '8px',
               overflow: 'hidden',
-              transition: 'transform 0.2s ease'
+              transition: 'transform 0.2s ease',
             }}
             onClick={handleProductClick}
             onMouseEnter={(e) => {
@@ -74,20 +74,22 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'scale(1)'
-            }}
-          >
+            }}>
             <img
               src={product.image}
-              style={{ 
-                width: '100%', 
-                height: '100%', 
-                objectFit: 'cover'
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
               }}
               alt={product.name}
             />
           </div>
-          
-          <div className='me-auto product-details' style={{ cursor: 'pointer' }} onClick={handleProductClick}>
+
+          <div
+            className='me-auto product-details'
+            style={{ cursor: 'pointer' }}
+            onClick={handleProductClick}>
             <h6 className='mb-1 product-name'>{product.name}</h6>
             <p className='text-muted mb-1' style={{ fontSize: '0.9rem' }}>
               {formatCurrency(product.price)} each
@@ -101,8 +103,7 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
                   handleDecrease()
                 }}
                 disabled={quantity <= 1}
-                className='quantity-btn'
-              >
+                className='quantity-btn'>
                 −
               </Button>
               <span className='quantity-display'>{quantity}</span>
@@ -113,32 +114,29 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
                   e.stopPropagation()
                   handleIncrease()
                 }}
-                className='quantity-btn'
-              >
+                className='quantity-btn'>
                 +
               </Button>
             </div>
           </div>
-          
+
           <div className='price-section text-end'>
             <div className='item-total fw-bold fs-5'>
               {formatCurrency(product.price * quantity)}
             </div>
-            <Button 
-              variant='outline-danger' 
-              size='sm' 
+            <Button
+              variant='outline-danger'
+              size='sm'
               onClick={(e) => {
                 e.stopPropagation()
                 handleRemove()
               }}
-              className='remove-btn mt-2'
-            >
+              className='remove-btn mt-2'>
               Remove
             </Button>
           </div>
         </Stack>
       </Card.Body>
-
     </Card>
   )
 }
