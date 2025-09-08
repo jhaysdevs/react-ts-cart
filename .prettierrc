@@ -10,17 +10,8 @@
   "quoteProps": "as-needed",
   "bracketSameLine": true,
   "semi": false,
-  "plugins": ["@trivago/prettier-plugin-sort-imports"],
-  "importOrder": [
-    "^react$",
-    "^next",
-    "<THIRD_PARTY_MODULES>",
-    "^@/components/(.*)$",
-    "^@/utils/(.*)$",
-    "^[./]"
-  ],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true,
+  "plugins": ["prettier-plugin-sort-imports"],
+  "sortingMethod": "alphabetical",
   "overrides": [
     {
       "files": ["*.htm", "*.html", "*.css", "*.less", "*.scss"],
