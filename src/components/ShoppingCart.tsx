@@ -10,7 +10,7 @@ type ShoppingCartProps = {
 
 export function ShoppingCart({ isOpen }: ShoppingCartProps) {
   const { closeCart, cartItems } = useShoppingCart()
-  
+
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement='end'>
       <Offcanvas.Header closeButton>
@@ -19,7 +19,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
       <Offcanvas.Body>
         <Stack gap={3}>
           {cartItems
-            .filter(item => item.product && item.product.id) // Filter out any malformed items
+            .filter((item) => item.product && item.product.id) // Filter out any malformed items
             .map((item) => (
               <CartItem key={item.product.id} product={item.product} quantity={item.quantity} />
             ))}
@@ -27,7 +27,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
             Total{' '}
             {formatCurrency(
               cartItems
-                .filter(item => item.product && item.product.id)
+                .filter((item) => item.product && item.product.id)
                 .reduce((total, cartItem) => {
                   return total + cartItem.product.price * cartItem.quantity
                 }, 0)

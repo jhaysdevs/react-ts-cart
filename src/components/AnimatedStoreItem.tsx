@@ -3,9 +3,9 @@ import { Card, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import { useShoppingCart } from '../context/ShoppingCartContext'
-import { formatCurrency } from '../utilities/formatCurrency'
 import { Product } from '../hooks/useProducts'
 import '../styles/pages/Store.scss'
+import { formatCurrency } from '../utilities/formatCurrency'
 
 type AnimatedStoreItemProps = {
   product: Product
@@ -19,7 +19,7 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
   const navigate = useNavigate()
   const quantity = getItemQuantity(product.id)
   const [isUpdating, setIsUpdating] = useState(false)
-  
+
   // Convert product ID to numeric for navigation (keeping compatibility with existing routes)
   const numericId = parseInt(product.id.replace(/-/g, '').substring(0, 8), 16)
 
@@ -55,31 +55,29 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
   const getAnimationDelay = () => {
     if (gridPosition) {
       // Animate from left to right, with slight row delay
-      return (gridPosition.row * 0.05) + (gridPosition.col * 0.02)
+      return gridPosition.row * 0.05 + gridPosition.col * 0.02
     }
     // Fallback to index-based delay
     return index * 0.01
   }
 
   return (
-    <Card 
+    <Card
       className={`h-100 d-flex flex-column store-item-card ${isUpdating ? 'updating' : ''}`}
       style={{
         animationDelay: `${getAnimationDelay()}s`,
-        transition: 'all 0.15s ease'
-      }}
-    >
-      <div 
+        transition: 'all 0.15s ease',
+      }}>
+      <div
         className='product-image-container'
         style={{
           height: '200px',
           width: '100%',
           overflow: 'hidden',
           cursor: 'pointer',
-          position: 'relative'
+          position: 'relative',
         }}
-        onClick={handleProductClick}
-      >
+        onClick={handleProductClick}>
         <Card.Img
           variant='top'
           src={product.image}
@@ -87,7 +85,7 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
             objectFit: 'cover',
             height: '100%',
             width: '100%',
-            transition: 'transform 0.3s ease'
+            transition: 'transform 0.3s ease',
           }}
           alt={product.name}
           onMouseEnter={(e) => {
@@ -102,10 +100,10 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
             <span>View Details</span>
           </div>
         </div>
-        
+
         {/* Cart indicator badge */}
         {quantity > 0 && (
-          <div 
+          <div
             style={{
               position: 'absolute',
               top: '8px',
@@ -120,15 +118,14 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
               justifyContent: 'center',
               fontSize: '12px',
               fontWeight: 'bold',
-              zIndex: 2
+              zIndex: 2,
             }}
-            title={`${quantity} in cart`}
-          >
+            title={`${quantity} in cart`}>
             {quantity}
           </div>
         )}
       </div>
-      
+
       <Card.Body className='d-flex flex-column flex-grow-1 p-3'>
         <Card.Title
           className='h6 mb-2 text-truncate product-title'
@@ -155,12 +152,11 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
 
         <div className='mt-auto'>
           {quantity === 0 ? (
-            <Button 
-              className='w-100 add-to-cart-btn' 
-              size='sm' 
+            <Button
+              className='w-100 add-to-cart-btn'
+              size='sm'
               onClick={handleAddToCart}
-              variant='primary'
-            >
+              variant='primary'>
               + Add To Cart
             </Button>
           ) : (
@@ -170,23 +166,21 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
               <div
                 className='d-flex align-items-center justify-content-center quantity-controls'
                 style={{ gap: '1rem' }}>
-                <Button 
-                  size='sm' 
+                <Button
+                  size='sm'
                   onClick={handleDecrease}
                   className='quantity-btn'
-                  variant='outline-secondary'
-                >
+                  variant='outline-secondary'>
                   −
                 </Button>
                 <span className='fs-6 text-center quantity-display'>
                   <strong>{quantity}</strong> in cart
                 </span>
-                <Button 
-                  size='sm' 
+                <Button
+                  size='sm'
                   onClick={handleIncrease}
                   className='quantity-btn'
-                  variant='outline-secondary'
-                >
+                  variant='outline-secondary'>
                   +
                 </Button>
               </div>

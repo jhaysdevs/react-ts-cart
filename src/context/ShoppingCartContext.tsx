@@ -37,7 +37,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   // Utility function to consolidate duplicate items
   const consolidateItems = (items: CartItem[]): CartItem[] => {
     return items.reduce((acc, item) => {
-      const existingItem = acc.find(existing => existing.product.id === item.product.id)
+      const existingItem = acc.find((existing) => existing.product.id === item.product.id)
       if (existingItem) {
         existingItem.quantity += item.quantity
       } else {
@@ -50,18 +50,18 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   // Migrate old cart data and clean up duplicates on mount
   useEffect(() => {
     // Check if we have old format cart items (with numeric id instead of product object)
-    const hasOldFormat = cartItems.some(item => 'id' in item && typeof item.id === 'number')
-    
+    const hasOldFormat = cartItems.some((item) => 'id' in item && typeof item.id === 'number')
+
     if (hasOldFormat) {
       // Clear old format cart items - they can't be migrated without product data
       console.log('Cart data format updated - clearing old cart items for compatibility')
       setCartItems([])
       return
     }
-    
+
     // Clean up any duplicate items
     const uniqueItems = consolidateItems(cartItems)
-    
+
     // Only update if there were duplicates
     if (uniqueItems.length !== cartItems.length) {
       setCartItems(uniqueItems)
@@ -83,7 +83,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     setCartItems((currItems) => {
       // First, consolidate any existing duplicates
       const consolidatedItems = consolidateItems(currItems)
-      
+
       // Then add or increment the item
       const existingItem = consolidatedItems.find((item) => item.product.id === product.id)
       if (existingItem == null) {
@@ -104,7 +104,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     setCartItems((currItems) => {
       // First, consolidate any existing duplicates
       const consolidatedItems = consolidateItems(currItems)
-      
+
       // Then decrement or remove the item
       const existingItem = consolidatedItems.find((item) => item.product.id === productId)
       if (existingItem?.quantity === 1) {

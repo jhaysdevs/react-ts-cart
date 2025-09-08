@@ -2,8 +2,8 @@ import { Button, Stack } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import { useShoppingCart } from '../context/ShoppingCartContext'
-import { formatCurrency } from '../utilities/formatCurrency'
 import { Product } from '../hooks/useProducts'
+import { formatCurrency } from '../utilities/formatCurrency'
 
 type CartItemProps = {
   product: Product

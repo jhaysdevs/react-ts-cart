@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState, useRef } from 'react'
 import { useShoppingCart } from '../context/ShoppingCartContext'
+import { useCallback, useEffect, useState, useRef } from 'react'
 
 export type Product = {
   id: string
@@ -42,7 +42,7 @@ export function useProducts(): UseProductsReturn {
   const fetchProductsFromAPI = useCallback(async () => {
     // Prevent multiple calls
     if (hasFetchedRef.current) return
-    
+
     try {
       setLoading(true)
       setError(null)
@@ -56,7 +56,7 @@ export function useProducts(): UseProductsReturn {
       }
 
       const data = await response.json()
-      
+
       // Handle different response structures
       let fetchedProducts = []
       if (Array.isArray(data)) {
@@ -70,37 +70,39 @@ export function useProducts(): UseProductsReturn {
       } else {
         fetchedProducts = []
       }
-      
+
       // Ensure we always have an array
       if (!Array.isArray(fetchedProducts)) {
         fetchedProducts = []
       }
-      
+
       // Store all products in ref for progressive display
       apiProductsRef.current = fetchedProducts
-      
+
       // Process cart items during initial fetch (only once)
       const cartProducts = (cartItems || [])
-        .filter(item => item.product && item.product.id)
-        .map(item => item.product)
-      
+        .filter((item) => item.product && item.product.id)
+        .map((item) => item.product)
+
       let allProducts = fetchedProducts
       if (cartProducts.length > 0) {
         // Remove cart products from fetched products to avoid duplicates
-        const cartProductIds = new Set(cartProducts.map(p => p.id))
-        const uniqueFetchedProducts = fetchedProducts.filter((p: Product) => !cartProductIds.has(p.id))
-        
+        const cartProductIds = new Set(cartProducts.map((p) => p.id))
+        const uniqueFetchedProducts = fetchedProducts.filter(
+          (p: Product) => !cartProductIds.has(p.id)
+        )
+
         // Prepend cart products to the beginning of the product list
         allProducts = [...cartProducts, ...uniqueFetchedProducts]
       }
-      
+
       // Display first batch of products (12 items)
       const firstBatch = allProducts.slice(0, itemsPerPage)
       setProducts(firstBatch)
-      
+
       // Set hasMore based on whether there are more products to show
       setHasMore(allProducts.length > itemsPerPage)
-      
+
       // Mark initial fetch as complete
       initialFetchCompleteRef.current = true
     } catch (err) {
@@ -111,7 +113,6 @@ export function useProducts(): UseProductsReturn {
     }
   }, [itemsPerPage, cartItems])
 
-
   // For pagination, we need to track if we've reached the end
   const [hasMore, setHasMore] = useState(true)
 
@@ -120,33 +121,37 @@ export function useProducts(): UseProductsReturn {
       return
     }
     setIsLoadingMore(true)
-    
+
     // Minimal delay for smooth animation
     setTimeout(() => {
       try {
         // Get all available products (including cart items)
         const cartProducts = (cartItems || [])
-          .filter(item => item.product && item.product.id)
-          .map(item => item.product)
-        
+          .filter((item) => item.product && item.product.id)
+          .map((item) => item.product)
+
         let allProducts = apiProductsRef.current
         if (cartProducts.length > 0) {
           // Remove cart products from fetched products to avoid duplicates
-          const cartProductIds = new Set(cartProducts.map(p => p.id))
-          const uniqueFetchedProducts = apiProductsRef.current.filter((p: Product) => !cartProductIds.has(p.id))
-          
+          const cartProductIds = new Set(cartProducts.map((p) => p.id))
+          const uniqueFetchedProducts = apiProductsRef.current.filter(
+            (p: Product) => !cartProductIds.has(p.id)
+          )
+
           // Prepend cart products to the beginning of the product list
           allProducts = [...cartProducts, ...uniqueFetchedProducts]
         }
-        
+
         // Calculate next batch of products to show
         const currentDisplayedCount = products.length
-        const nextBatch = allProducts.slice(currentDisplayedCount, currentDisplayedCount + itemsPerPage)
-        
-        
+        const nextBatch = allProducts.slice(
+          currentDisplayedCount,
+          currentDisplayedCount + itemsPerPage
+        )
+
         if (nextBatch.length > 0) {
-          setProducts(prev => [...prev, ...nextBatch])
-          
+          setProducts((prev) => [...prev, ...nextBatch])
+
           // Check if we've reached the end
           if (currentDisplayedCount + nextBatch.length >= allProducts.length) {
             setHasMore(false)
