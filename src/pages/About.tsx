@@ -58,7 +58,7 @@ export function About() {
           <Container>
             <Row className='justify-content-center text-center'>
               <Col lg={8}>
-                <div className='about-icon mb-3' style={{ fontSize: '4rem' }}>
+                <div className='about-icon mb-3'>
                   🏪
                 </div>
                 <h1 className='fw-bold mb-3'>About Us</h1>
@@ -78,8 +78,8 @@ export function About() {
           <Col lg={10} className='mx-auto'>
             <Card className='fade-in mb-4 shadow-sm border-0 story-card'>
               <Card.Body className='p-4'>
-                <div className='text-center mb-4'>
-                  <div className='story-icon mb-3' style={{ fontSize: '3rem' }}>
+                <div className='text-center'>
+                  <div className='story-icon mb-3'>
                     📖
                   </div>
                   <h2 className='mb-3'>Our Story</h2>
@@ -103,20 +103,17 @@ export function About() {
                     <div className='story-visual text-center mt-4'>
                       <div className='timeline-item mb-3'>
                         <div
-                          className='timeline-icon bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center'
-                          style={{ width: '60px', height: '60px' }}>
+                          className='timeline-icon bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center'>
                           {foundingYear}
                         </div>
                         <h6 className='mt-2 mb-1'>Founded</h6>
                         <small className='text-muted'>Started our journey</small>
                       </div>
                       <div
-                        className='timeline-line bg-primary'
-                        style={{ height: '40px', width: '2px', margin: '0 auto' }}></div>
+                        className='timeline-line bg-primary'></div>
                       <div className='timeline-item mt-3'>
                         <div
-                          className='timeline-icon bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center'
-                          style={{ width: '60px', height: '60px' }}>
+                          className='timeline-icon bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center'>
                           {currentYear}
                         </div>
                         <h6 className='mt-2 mb-1'>Today</h6>
@@ -139,7 +136,7 @@ export function About() {
                 {stats.map((stat, index) => (
                   <Col md={3} key={index}>
                     <div className='stat-card p-4 rounded-3 h-100'>
-                      <div className='stat-icon mb-3' style={{ fontSize: '2.5rem' }}>
+                      <div className='stat-icon mb-3'>
                         {stat.icon}
                       </div>
                       <h4 className='h2 fw-bold text-primary mb-2'>{stat.number}</h4>
@@ -160,7 +157,7 @@ export function About() {
                 <Card className='h-100 border-0 shadow-sm mission-card'>
                   <Card.Body className='p-4'>
                     <div className='d-flex align-items-center mb-3'>
-                      <div className='me-3' style={{ fontSize: '2rem' }}>
+                      <div className='me-3 mission-icon'>
                         🎯
                       </div>
                       <h3 className='mb-0 h4'>Our Mission</h3>
@@ -204,7 +201,7 @@ export function About() {
                 <Card className='h-100 border-0 shadow-sm values-card'>
                   <Card.Body className='p-4'>
                     <div className='d-flex align-items-center mb-3'>
-                      <div className='me-3' style={{ fontSize: '2rem' }}>
+                      <div className='me-3 values-icon'>
                         💎
                       </div>
                       <h3 className='mb-0 h4'>Our Values</h3>
@@ -213,7 +210,7 @@ export function About() {
                       {values.map((value, index) => (
                         <div key={index} className='value-item mb-3'>
                           <div className='d-flex align-items-start'>
-                            <span className='me-2' style={{ fontSize: '1.2rem' }}>
+                            <span className='me-2 value-item-icon'>
                               {value.icon}
                             </span>
                             <div>
@@ -236,7 +233,7 @@ export function About() {
           <Col lg={8} className='mx-auto'>
             <Card className='border-0 shadow-sm commitment-card'>
               <Card.Body className='p-5 text-center'>
-                <div className='commitment-icon mb-4' style={{ fontSize: '3rem' }}>
+                <div className='commitment-icon mb-4'>
                   🤝
                 </div>
                 <h3 className='mb-4'>Our Commitment to You</h3>
@@ -249,7 +246,7 @@ export function About() {
                 <div className='commitment-features row g-3'>
                   <div className='col-md-4'>
                     <div className='feature-item p-3 bg-light rounded h-100'>
-                      <div className='text-primary mb-2' style={{ fontSize: '1.5rem' }}>
+                      <div className='text-primary mb-2 feature-icon'>
                         🛡️
                       </div>
                       <h6 className='mb-1'>Secure Shopping</h6>
@@ -258,7 +255,7 @@ export function About() {
                   </div>
                   <div className='col-md-4'>
                     <div className='feature-item p-3 bg-light rounded h-100'>
-                      <div className='text-success mb-2' style={{ fontSize: '1.5rem' }}>
+                      <div className='text-success mb-2 feature-icon'>
                         🚚
                       </div>
                       <h6 className='mb-1'>Fast Delivery</h6>
@@ -267,7 +264,7 @@ export function About() {
                   </div>
                   <div className='col-md-4'>
                     <div className='feature-item p-3 bg-light rounded h-100'>
-                      <div className='text-info mb-2' style={{ fontSize: '1.5rem' }}>
+                      <div className='text-info mb-2 feature-icon'>
                         💬
                       </div>
                       <h6 className='mb-1'>24/7 Support</h6>
@@ -300,8 +297,7 @@ export function About() {
                 <Button
                   variant='light'
                   size='lg'
-                  className='px-5 py-3'
-                  style={{ borderRadius: '25px' }}
+                  className='px-5 py-3 cta-button'
                   onClick={() => navigate('/store')}>
                   Start Shopping Now
                 </Button>

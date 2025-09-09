@@ -10,7 +10,7 @@ import { formatCurrency } from '../utilities/formatCurrency'
 export function ProductDetail() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const { products, loading, error } = useProductsContext()
+  const { products, loading, error, refetch, isRetrying } = useProductsContext()
   const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } =
     useShoppingCart()
 
@@ -45,6 +45,28 @@ export function ProductDetail() {
         <Alert variant='danger' className='text-center' style={{ maxWidth: '500px' }}>
           <Alert.Heading>Error Loading Product</Alert.Heading>
           <p>{error}</p>
+          <hr />
+          <div className='d-flex justify-content-end'>
+            <button 
+              className='btn btn-outline-danger' 
+              onClick={refetch}
+              disabled={isRetrying}
+            >
+              {isRetrying ? (
+                <>
+                  <Spinner 
+                    animation='border' 
+                    size='sm' 
+                    className='me-2' 
+                    role='status'
+                  />
+                  Retrying...
+                </>
+              ) : (
+                'Try Again'
+              )}
+            </button>
+          </div>
         </Alert>
       </Container>
     )

@@ -8,7 +8,7 @@ import { useProductsContext } from '../context/ProductsContext'
 import '../styles/pages/Store.scss'
 
 export function Store() {
-  const { products, loading, error, refetch, loadMore, hasMore, isLoadingMore } =
+  const { products, loading, error, refetch, loadMore, hasMore, isLoadingMore, isRetrying } =
     useProductsContext()
   const observerRef = useRef<HTMLDivElement>(null)
   const [observerEnabled, setObserverEnabled] = useState(false)
@@ -84,8 +84,24 @@ export function Store() {
             <p>{error}</p>
             <hr />
             <div className='d-flex justify-content-end'>
-              <button className='btn btn-outline-danger' onClick={refetch}>
-                Try Again
+              <button 
+                className='btn btn-outline-danger' 
+                onClick={refetch}
+                disabled={isRetrying}
+              >
+                {isRetrying ? (
+                  <>
+                    <Spinner 
+                      animation='border' 
+                      size='sm' 
+                      className='me-2' 
+                      role='status'
+                    />
+                    Retrying...
+                  </>
+                ) : (
+                  'Try Again'
+                )}
               </button>
             </div>
           </Alert>

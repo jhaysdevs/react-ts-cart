@@ -26,6 +26,7 @@ type UseProductsReturn = {
   loadMore: () => void
   hasMore: boolean
   isLoadingMore: boolean
+  isRetrying: boolean
 }
 
 export function useProducts(): UseProductsReturn {
@@ -33,18 +34,23 @@ export function useProducts(): UseProductsReturn {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [isLoadingMore, setIsLoadingMore] = useState(false)
+  const [isRetrying, setIsRetrying] = useState(false)
   const itemsPerPage = 12 // Display 12 items per batch for better UX
   const { cartItems } = useShoppingCart()
   const apiProductsRef = useRef<Product[]>([])
   const initialFetchCompleteRef = useRef(false)
   const hasFetchedRef = useRef(false)
 
-  const fetchProductsFromAPI = useCallback(async () => {
-    // Prevent multiple calls
-    if (hasFetchedRef.current) return
+  const fetchProductsFromAPI = useCallback(async (isRetry = false) => {
+    // Prevent multiple calls on initial load, but allow retries
+    if (hasFetchedRef.current && !isRetry) return
 
     try {
-      setLoading(true)
+      if (isRetry) {
+        setIsRetrying(true)
+      } else {
+        setLoading(true)
+      }
       setError(null)
       hasFetchedRef.current = true
 
@@ -109,9 +115,17 @@ export function useProducts(): UseProductsReturn {
       setError(err instanceof Error ? err.message : 'An error occurred while fetching products')
       setProducts([])
     } finally {
-      setLoading(false)
+      if (isRetry) {
+        setIsRetrying(false)
+      } else {
+        setLoading(false)
+      }
     }
   }, [itemsPerPage, cartItems])
+
+  const retryFetch = useCallback(() => {
+    fetchProductsFromAPI(true)
+  }, [fetchProductsFromAPI])
 
   // For pagination, we need to track if we've reached the end
   const [hasMore, setHasMore] = useState(true)
@@ -180,9 +194,10 @@ export function useProducts(): UseProductsReturn {
     products,
     loading,
     error,
-    refetch: fetchProductsFromAPI,
+    refetch: retryFetch,
     loadMore,
     hasMore,
     isLoadingMore,
+    isRetrying,
   }
 }

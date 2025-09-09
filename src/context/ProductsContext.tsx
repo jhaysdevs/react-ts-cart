@@ -10,6 +10,7 @@ type ProductsContextType = {
   loadMore: () => void
   hasMore: boolean
   isLoadingMore: boolean
+  isRetrying: boolean
 }
 
 const ProductsContext = createContext<ProductsContextType | undefined>(undefined)
