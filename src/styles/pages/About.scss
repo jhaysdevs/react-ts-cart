@@ -218,9 +218,90 @@
   }
 }
 
-// Add margin-top to all col-lg-6 elements except the last one
-div.col-lg-6:not(:last-child) {
-  margin-top: calc(var(--bs-gutter-x) * 0.5);
+// Ensure proper vertical alignment for cards in the same row
+.row.g-4 {
+  align-items: stretch;
+  
+  .col-lg-6 {
+    display: flex;
+    
+    .card {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      
+      .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+// Specific alignment for mission and values cards
+.mission-card,
+.values-card {
+  .card-body {
+    justify-content: flex-start;
+  }
+}
+
+// Ensure cards align at the top on medium and larger screens
+@media (min-width: 992px) {
+  .row.g-4 {
+    .col-lg-6 {
+      align-items: flex-start;
+    }
+  }
+}
+
+// Icon styles
+.about-icon {
+  font-size: 4rem;
+}
+
+.story-icon {
+  font-size: 3rem;
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+}
+
+.timeline-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.timeline-line {
+  height: 40px;
+  width: 2px;
+  margin: 0 auto;
+}
+
+.mission-icon {
+  font-size: 2rem;
+}
+
+.values-icon {
+  font-size: 2rem;
+}
+
+.value-item-icon {
+  font-size: 1.2rem;
+}
+
+.commitment-icon {
+  font-size: 3rem;
+}
+
+.feature-icon {
+  font-size: 1.5rem;
+}
+
+.cta-button {
+  border-radius: 25px;
 }
 
 // Responsive adjustments

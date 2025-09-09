@@ -135,7 +135,6 @@
 
 .product-image-container {
   width: 120px;
-  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,5 +187,18 @@
 .text-muted {
   &.price-text {
     font-size: 0.9rem;
+  }
+}
+
+// Vertical separation for card-body elements
+.card-body {
+  .d-flex.align-items-stretch.hstack.gap-3 {
+    > * {
+      margin-bottom: 1rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }
