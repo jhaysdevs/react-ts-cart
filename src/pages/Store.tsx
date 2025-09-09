@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Alert, Container, Spinner } from 'react-bootstrap'
 import Masonry from 'react-masonry-css'
@@ -8,10 +8,8 @@ import { useProductsContext } from '../context/ProductsContext'
 import '../styles/pages/Store.scss'
 
 export function Store() {
-  const { products, loading, error, refetch, loadMore, hasMore, isLoadingMore, isRetrying } =
-    useProductsContext()
-  const observerRef = useRef<HTMLDivElement>(null)
-  const [observerEnabled, setObserverEnabled] = useState(false)
+  const { products, loading, error, refetch } = useProductsContext()
+  const [visibleProducts, setVisibleProducts] = useState<number[]>([])
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
@@ -24,39 +22,23 @@ export function Store() {
     500: 1,
   }
 
-  // Enable intersection observer after initial load is complete
+  // AJAX-style loading animation for products
   useEffect(() => {
+    console.log('Store useEffect - loading:', loading, 'products.length:', products.length)
     if (!loading && products.length > 0) {
-      // Small delay to prevent immediate triggering
-      const timer = setTimeout(() => {
-        setObserverEnabled(true)
-      }, 500)
-
-      return () => clearTimeout(timer)
+      console.log('Starting animation for', products.length, 'products')
+      setVisibleProducts([])
+      
+      // Animate products in one by one with staggered delays
+      products.forEach((_, index) => {
+        setTimeout(() => {
+          setVisibleProducts(prev => [...prev, index])
+        }, index * 100) // 100ms delay between each product
+      })
+    } else if (!loading && products.length === 0) {
+      console.log('No products to animate - products array is empty')
     }
   }, [loading, products.length])
-
-  // Intersection Observer for infinite scroll
-  useEffect(() => {
-    if (!observerEnabled) {
-      return
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && hasMore && !isLoadingMore) {
-          loadMore()
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (observerRef.current) {
-      observer.observe(observerRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [observerEnabled, hasMore, isLoadingMore, loadMore])
 
   // Render content based on state
   const renderContent = () => {
@@ -87,21 +69,8 @@ export function Store() {
               <button 
                 className='btn btn-outline-danger' 
                 onClick={refetch}
-                disabled={isRetrying}
               >
-                {isRetrying ? (
-                  <>
-                    <Spinner 
-                      animation='border' 
-                      size='sm' 
-                      className='me-2' 
-                      role='status'
-                    />
-                    Retrying...
-                  </>
-                ) : (
-                  'Try Again'
-                )}
+                Try Again
               </button>
             </div>
           </Alert>
@@ -122,70 +91,35 @@ export function Store() {
       )
     }
 
+    console.log('Rendering with products:', products.length, 'visible:', visibleProducts.length)
     return (
-      <>
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className='masonry-grid'
-          columnClassName='masonry-grid_column'>
-          {Array.isArray(products)
-            ? products.map((product, index) => {
-                // Calculate grid position based on current viewport
-                const getGridPosition = () => {
-                  // Get current breakpoint columns
-                  const getCurrentColumns = () => {
-                    if (window.innerWidth >= 1100) return 4
-                    if (window.innerWidth >= 700) return 3
-                    if (window.innerWidth >= 500) return 2
-                    return 1
-                  }
-
-                  const columns = getCurrentColumns()
-                  const row = Math.floor(index / columns)
-                  const col = index % columns
-
-                  return { row, col }
-                }
-
-                return (
-                  <div key={product.id} className='masonry-item' data-id={product.id}>
-                    <AnimatedStoreItem
-                      product={product}
-                      index={index}
-                      gridPosition={getGridPosition()}
-                    />
-                  </div>
-                )
-              })
-            : null}
-        </Masonry>
-
-        {/* Loading indicator */}
-        {isLoadingMore && (
-          <div className='text-center py-5'>
-            <div className='store-loading'>
-              <div className='loading-animation-container'>
-                <div className='loading-dots'>
-                  <div className='dot'></div>
-                  <div className='dot'></div>
-                  <div className='dot'></div>
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className='masonry-grid'
+        columnClassName='masonry-grid_column'>
+        {Array.isArray(products)
+          ? products.map((product, index) => {
+              const isVisible = visibleProducts.includes(index)
+              return (
+                <div 
+                  key={product.id} 
+                  className={`masonry-item ${isVisible ? 'ajax-loaded' : 'ajax-loading'}`}
+                  data-id={product.id}
+                  style={{ 
+                    '--item-index': index,
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
+                    transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
+                  } as React.CSSProperties}
+                >
+                  <AnimatedStoreItem
+                    product={product}
+                  />
                 </div>
-                <p className='text-muted mt-3 mb-0'>Loading more products...</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* End of list indicator */}
-        {!hasMore && products.length > 0 && (
-          <Alert variant='info' className='text-center mt-4 store-load-more'>
-            <strong>You've reached the end!</strong> All available products are displayed.
-          </Alert>
-        )}
-
-        {/* Intersection observer target */}
-        {observerEnabled && <div ref={observerRef} style={{ height: '20px' }} />}
-      </>
+              )
+            })
+          : null}
+      </Masonry>
     )
   }
 
