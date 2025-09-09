@@ -108,7 +108,7 @@ export function Cart() {
           </div>
         </Col>
 
-        <Col lg={4}>
+        <Col lg={4} className='mt-4 mt-lg-0'>
           <div className='cart-summary slide-in-right'>
             <div className='card'>
               <div className='card-header'>

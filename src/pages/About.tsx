@@ -100,7 +100,7 @@ export function About() {
                     </p>
                   </Col>
                   <Col lg={6}>
-                    <div className='story-visual text-center'>
+                    <div className='story-visual text-center mt-4'>
                       <div className='timeline-item mb-3'>
                         <div
                           className='timeline-icon bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center'

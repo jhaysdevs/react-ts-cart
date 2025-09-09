@@ -134,9 +134,59 @@
 }
 
 .product-image-container {
-  transition: $transition-fast;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
 
   &:hover {
     transform: scale(1.05);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.product-details {
+  cursor: pointer;
+}
+
+.price-section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .remove-btn {
+    margin-top: auto;
+  }
+}
+
+.cart-item-card {
+  transition: all 0.3s ease;
+
+  &.removing {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.cart-items-container {
+  .d-flex {
+    min-height: 120px;
+  }
+}
+
+.text-muted {
+  &.price-text {
+    font-size: 0.9rem;
   }
 }
