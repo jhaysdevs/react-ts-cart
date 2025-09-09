@@ -218,6 +218,11 @@
   }
 }
 
+// Add margin-top to all col-lg-6 elements except the last one
+div.col-lg-6:not(:last-child) {
+  margin-top: calc(var(--bs-gutter-x) * 0.5);
+}
+
 // Responsive adjustments
 @media (max-width: 768px) {
   .about-hero {

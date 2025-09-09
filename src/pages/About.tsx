@@ -72,12 +72,12 @@ export function About() {
         </div>
       </div>
 
-      <Container className='pb-5'>
+      <Container className='my-4'>
         {/* Company Story Section */}
-        <Row className='mb-5'>
+        <Row className='my-4'>
           <Col lg={10} className='mx-auto'>
-            <Card className='fade-in mb-5 shadow-sm border-0 story-card'>
-              <Card.Body className='p-5'>
+            <Card className='fade-in mb-4 shadow-sm border-0 story-card'>
+              <Card.Body className='p-4'>
                 <div className='text-center mb-4'>
                   <div className='story-icon mb-3' style={{ fontSize: '3rem' }}>
                     📖
