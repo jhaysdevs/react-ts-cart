@@ -1,27 +1,22 @@
 import { useState, useEffect } from 'react'
-import { 
-  Container, 
-  Row, 
-  Col, 
-  Card, 
-  Form, 
-  Button, 
-  Alert, 
-  Spinner,
-  Badge
-} from 'react-bootstrap'
+import { Container, Row, Col, Card, Form, Button, Alert, Spinner, Badge } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import { useShoppingCart } from '../context/ShoppingCartContext'
-import { formatCurrency } from '../utilities/formatCurrency'
-import { validateCheckoutForm, formatCardNumber, formatExpiryDate, formatPhoneNumber } from '../utilities/validation'
-import { CheckoutFormData, CheckoutFormErrors, OrderSummary, CheckoutStep } from '../types/checkout'
 import '../styles/pages/Checkout.scss'
+import { CheckoutFormData, CheckoutFormErrors, OrderSummary, CheckoutStep } from '../types/checkout'
+import { formatCurrency } from '../utilities/formatCurrency'
+import {
+  validateCheckoutForm,
+  formatCardNumber,
+  formatExpiryDate,
+  formatPhoneNumber,
+} from '../utilities/validation'
 
 export function Checkout() {
   const navigate = useNavigate()
   const { cartItems, cartQuantity } = useShoppingCart()
-  
+
   const [formData, setFormData] = useState<CheckoutFormData>({
     firstName: '',
     lastName: '',
@@ -39,7 +34,7 @@ export function Checkout() {
     saveInfo: false,
     newsletter: false,
     giftWrap: false,
-    specialInstructions: ''
+    specialInstructions: '',
   })
 
   const [errors, setErrors] = useState<CheckoutFormErrors>({})
@@ -57,7 +52,7 @@ export function Checkout() {
   // Calculate order summary
   useEffect(() => {
     if (cartItems.length > 0) {
-      const subtotal = cartItems.reduce((sum, item) => sum + (item.product.price * item.quantity), 0)
+      const subtotal = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
       const tax = subtotal * 0.08 // 8% tax
       const shipping = subtotal > 50 ? 0 : 9.99 // Free shipping over $50
       const giftWrap = formData.giftWrap ? 5.99 : 0
@@ -69,18 +64,38 @@ export function Checkout() {
         shipping,
         giftWrap,
         total,
-        itemCount: cartQuantity
+        itemCount: cartQuantity,
       })
     }
   }, [cartItems, cartQuantity, formData.giftWrap])
 
   const steps: CheckoutStep[] = [
-    { id: 'shipping', title: 'Shipping', description: 'Delivery information', completed: currentStep > 1, active: currentStep === 1 },
-    { id: 'payment', title: 'Payment', description: 'Payment details', completed: currentStep > 2, active: currentStep === 2 },
-    { id: 'review', title: 'Review', description: 'Confirm order', completed: currentStep > 3, active: currentStep === 3 }
+    {
+      id: 'shipping',
+      title: 'Shipping',
+      description: 'Delivery information',
+      completed: currentStep > 1,
+      active: currentStep === 1,
+    },
+    {
+      id: 'payment',
+      title: 'Payment',
+      description: 'Payment details',
+      completed: currentStep > 2,
+      active: currentStep === 2,
+    },
+    {
+      id: 'review',
+      title: 'Review',
+      description: 'Confirm order',
+      completed: currentStep > 3,
+      active: currentStep === 3,
+    },
   ]
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     const { name, value, type } = e.target
     const checked = (e.target as HTMLInputElement).checked
 
@@ -95,16 +110,16 @@ export function Checkout() {
       formattedValue = formatPhoneNumber(value)
     }
 
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : formattedValue
+      [name]: type === 'checkbox' ? checked : formattedValue,
     }))
 
     // Clear error when user starts typing
     if (errors[name as keyof CheckoutFormErrors]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: undefined
+        [name]: undefined,
       }))
     }
   }
@@ -137,17 +152,17 @@ export function Checkout() {
 
   const handleNext = () => {
     if (validateStep(currentStep)) {
-      setCurrentStep(prev => Math.min(prev + 1, 3))
+      setCurrentStep((prev) => Math.min(prev + 1, 3))
     }
   }
 
   const handlePrevious = () => {
-    setCurrentStep(prev => Math.max(prev - 1, 1))
+    setCurrentStep((prev) => Math.max(prev - 1, 1))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     const allErrors = validateCheckoutForm(formData)
     if (Object.keys(allErrors).length > 0) {
       setErrors(allErrors)
@@ -158,18 +173,18 @@ export function Checkout() {
 
     try {
       // Simulate payment processing
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+
       // Simulate success/failure (90% success rate)
       const isSuccess = Math.random() > 0.1
-      
+
       if (isSuccess) {
         // Clear cart and redirect to success page
-        navigate('/checkout/success', { 
-          state: { 
+        navigate('/checkout/success', {
+          state: {
             orderNumber: `ORD-${Date.now()}`,
-            orderSummary 
-          } 
+            orderSummary,
+          },
         })
       } else {
         setErrors({ general: 'Payment processing failed. Please try again.' })
@@ -199,10 +214,10 @@ export function Checkout() {
           <Card.Body>
             <div className='checkout-steps'>
               {steps.map((step, index) => (
-                <div key={step.id} className={`step ${step.active ? 'active' : ''} ${step.completed ? 'completed' : ''}`}>
-                  <div className='step-number'>
-                    {step.completed ? '✓' : index + 1}
-                  </div>
+                <div
+                  key={step.id}
+                  className={`step ${step.active ? 'active' : ''} ${step.completed ? 'completed' : ''}`}>
+                  <div className='step-number'>{step.completed ? '✓' : index + 1}</div>
                   <div className='step-content'>
                     <div className='step-title'>{step.title}</div>
                     <div className='step-description'>{step.description}</div>
@@ -305,9 +320,7 @@ export function Checkout() {
                         isInvalid={!!errors.address}
                         placeholder='Enter your street address'
                       />
-                      <Form.Control.Feedback type='invalid'>
-                        {errors.address}
-                      </Form.Control.Feedback>
+                      <Form.Control.Feedback type='invalid'>{errors.address}</Form.Control.Feedback>
                     </Form.Group>
 
                     <Row>
@@ -367,16 +380,13 @@ export function Checkout() {
                         name='country'
                         value={formData.country}
                         onChange={handleInputChange}
-                        isInvalid={!!errors.country}
-                      >
+                        isInvalid={!!errors.country}>
                         <option value='United States'>United States</option>
                         <option value='Canada'>Canada</option>
                         <option value='United Kingdom'>United Kingdom</option>
                         <option value='Australia'>Australia</option>
                       </Form.Select>
-                      <Form.Control.Feedback type='invalid'>
-                        {errors.country}
-                      </Form.Control.Feedback>
+                      <Form.Control.Feedback type='invalid'>{errors.country}</Form.Control.Feedback>
                     </Form.Group>
 
                     <Form.Group className='mb-3'>
@@ -460,16 +470,14 @@ export function Checkout() {
                             placeholder='123'
                             maxLength={4}
                           />
-                          <Form.Control.Feedback type='invalid'>
-                            {errors.cvv}
-                          </Form.Control.Feedback>
+                          <Form.Control.Feedback type='invalid'>{errors.cvv}</Form.Control.Feedback>
                         </Form.Group>
                       </Col>
                     </Row>
 
                     <Alert variant='info' className='mb-3'>
                       <small>
-                        <strong>Security:</strong> Your payment information is encrypted and secure. 
+                        <strong>Security:</strong> Your payment information is encrypted and secure.
                         We never store your card details.
                       </small>
                     </Alert>
@@ -487,15 +495,19 @@ export function Checkout() {
                     <div className='order-review'>
                       <h5>Shipping Address</h5>
                       <p className='mb-3'>
-                        {formData.firstName} {formData.lastName}<br />
-                        {formData.address}<br />
-                        {formData.city}, {formData.state} {formData.zipCode}<br />
+                        {formData.firstName} {formData.lastName}
+                        <br />
+                        {formData.address}
+                        <br />
+                        {formData.city}, {formData.state} {formData.zipCode}
+                        <br />
                         {formData.country}
                       </p>
 
                       <h5>Payment Method</h5>
                       <p className='mb-3'>
-                        **** **** **** {formData.cardNumber.slice(-4)}<br />
+                        **** **** **** {formData.cardNumber.slice(-4)}
+                        <br />
                         Expires: {formData.expiryDate}
                       </p>
 
@@ -506,6 +518,9 @@ export function Checkout() {
                             <div className='item-info'>
                               <span className='item-name'>{item.product.name}</span>
                               <span className='item-quantity'>Qty: {item.quantity}</span>
+                              <span className='item-unit-price text-muted small'>
+                                {formatCurrency(item.product.price)} each
+                              </span>
                             </div>
                             <span className='item-price'>
                               {formatCurrency(item.product.price * item.quantity)}
@@ -553,11 +568,10 @@ export function Checkout() {
                   <Button
                     variant='outline-secondary'
                     onClick={handlePrevious}
-                    disabled={currentStep === 1}
-                  >
+                    disabled={currentStep === 1}>
                     Previous
                   </Button>
-                  
+
                   {currentStep < 3 ? (
                     <Button variant='primary' onClick={handleNext}>
                       Next
@@ -567,8 +581,7 @@ export function Checkout() {
                       type='submit'
                       variant='success'
                       disabled={isSubmitting}
-                      className='checkout-submit-btn'
-                    >
+                      className='checkout-submit-btn'>
                       {isSubmitting ? (
                         <>
                           <Spinner animation='border' size='sm' className='me-2' />
