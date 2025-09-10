@@ -39,7 +39,7 @@ export function Home() {
                     </Button>
                   </Link>
                   <Link to='/about'>
-                    <Button variant='outline-light' size='lg' className='hero-btn'>
+                    <Button variant='outline-light' size='lg' className='hero-btn mt-4 mt-md-0'>
                       Learn More
                     </Button>
                   </Link>
@@ -139,48 +139,53 @@ export function Home() {
         {/* Quick Links Section */}
         <Row className='mb-5'>
           <Col>
-            <Card className='quick-links-card border-0' role='region' aria-labelledby='quick-links-heading'>
+            <Card
+              className='quick-links-card border-0'
+              role='region'
+              aria-labelledby='quick-links-heading'>
               <Card.Body className='p-5 text-center'>
-                <h2 id='quick-links-heading' className='h3 mb-4'>Explore Our Store</h2>
+                <h2 id='quick-links-heading' className='h3 mb-4'>
+                  Explore Our Store
+                </h2>
                 <p className='mb-4' style={{ opacity: 0.95 }}>
                   Discover everything we have to offer and learn more about our company
                 </p>
-                <Row className='g-4 justify-content-center' role='group' aria-label='Quick navigation links'>
+                <Row
+                  className='g-4 justify-content-center'
+                  role='group'
+                  aria-label='Quick navigation links'>
                   <Col md={4} sm={6}>
                     <Link to='/store' className='text-decoration-none'>
-                      <Button 
-                        variant='outline-primary' 
+                      <Button
+                        variant='outline-primary'
                         className='w-100 quick-link-btn'
                         aria-label='Browse our product catalog'
                         data-emoji='🛒'
-                        style={{ '--button-index': 0 } as React.CSSProperties}
-                      >
+                        style={{ '--button-index': 0 } as React.CSSProperties}>
                         Browse Products
                       </Button>
                     </Link>
                   </Col>
                   <Col md={4} sm={6}>
                     <Link to='/about' className='text-decoration-none'>
-                      <Button 
-                        variant='outline-success' 
+                      <Button
+                        variant='outline-success'
                         className='w-100 quick-link-btn'
                         aria-label='Learn about our company story'
                         data-emoji='📖'
-                        style={{ '--button-index': 1 } as React.CSSProperties}
-                      >
+                        style={{ '--button-index': 1 } as React.CSSProperties}>
                         Our Story
                       </Button>
                     </Link>
                   </Col>
                   <Col md={4} sm={6}>
                     <Link to='/privacy' className='text-decoration-none'>
-                      <Button 
-                        variant='outline-info' 
+                      <Button
+                        variant='outline-info'
                         className='w-100 quick-link-btn'
                         aria-label='Read our privacy policy'
                         data-emoji='🔒'
-                        style={{ '--button-index': 2 } as React.CSSProperties}
-                      >
+                        style={{ '--button-index': 2 } as React.CSSProperties}>
                         Privacy Policy
                       </Button>
                     </Link>
