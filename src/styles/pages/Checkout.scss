@@ -1,0 +1,461 @@
+@use '../variables' as *;
+@use '../keyframes' as *;
+
+.checkout-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.checkout-header {
+  .checkout-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $dark-color;
+    margin-bottom: 0.5rem;
+  }
+
+  .checkout-subtitle {
+    font-size: 1.1rem;
+    color: $secondary-color;
+    margin-bottom: 0;
+  }
+}
+
+// Progress Steps
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: $light-gray;
+      color: $secondary-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .step-content {
+      text-align: center;
+
+      .step-title {
+        font-weight: 600;
+        color: $secondary-color;
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .step-description {
+        font-size: 0.8rem;
+        color: $gray;
+      }
+    }
+
+    &.active {
+      .step-number {
+        background-color: $primary-color;
+        color: white;
+        animation: pulse 2s infinite;
+      }
+
+      .step-title {
+        color: $primary-color;
+      }
+    }
+
+    &.completed {
+      .step-number {
+        background-color: $success-color;
+        color: white;
+      }
+
+      .step-title {
+        color: $success-color;
+      }
+    }
+
+    .step-connector {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      right: -50%;
+      height: 2px;
+      background-color: $light-gray;
+      z-index: -1;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: $success-color;
+        width: 0;
+        transition: width 0.3s ease;
+      }
+    }
+
+    &.completed + .step .step-connector::after {
+      width: 100%;
+    }
+  }
+}
+
+// Form Styling
+.checkout-form {
+  .form-control {
+    border-radius: 8px;
+    border: 2px solid $border-color;
+    padding: 12px 16px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    &.is-invalid {
+      border-color: $danger-color;
+    }
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: $dark-color;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-check-input {
+    &:checked {
+      background-color: $primary-color;
+      border-color: $primary-color;
+    }
+  }
+}
+
+// Order Summary
+.order-summary-card {
+  position: sticky;
+  top: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 12px;
+
+  .card-header {
+    background: linear-gradient(135deg, $primary-color 0%, $primary-hover 100%);
+    color: white;
+    border-radius: 12px 12px 0 0 !important;
+    border: none;
+
+    h4 {
+      margin: 0;
+      font-weight: 600;
+    }
+  }
+
+  .summary-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid $border-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.total {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: $dark-color;
+      border-top: 2px solid $primary-color;
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+    }
+  }
+}
+
+// Navigation Buttons
+.checkout-navigation {
+  .btn {
+    padding: 12px 24px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .checkout-submit-btn {
+    background: linear-gradient(135deg, $success-color 0%, #20c997 100%);
+    border: none;
+    font-size: 1.1rem;
+    padding: 14px 32px;
+
+    &:hover {
+      background: linear-gradient(135deg, #218838 0%, #1ea085 100%);
+    }
+  }
+}
+
+// Order Review
+.order-review {
+  .order-items {
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid $border-color;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .item-info {
+        flex: 1;
+
+        .item-name {
+          font-weight: 600;
+          color: $dark-color;
+          display: block;
+          margin-bottom: 0.25rem;
+        }
+
+        .item-quantity {
+          font-size: 0.9rem;
+          color: $secondary-color;
+        }
+      }
+
+      .item-price {
+        font-weight: 600;
+        color: $primary-color;
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+// Success Page
+.checkout-success-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+
+  .success-icon {
+    .checkmark {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, $success-color 0%, #20c997 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 0 auto;
+      animation: bounceIn 0.8s ease-out;
+    }
+  }
+
+  .success-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $dark-color;
+    margin-bottom: 1rem;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+  }
+
+  .success-subtitle {
+    font-size: 1.2rem;
+    color: $secondary-color;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+  }
+
+  .order-items {
+    .order-item {
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid $border-color;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .item-image {
+        width: 60px;
+        height: 60px;
+        margin-right: 1rem;
+        border-radius: 8px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .item-details {
+        flex: 1;
+
+        h6 {
+          margin-bottom: 0.25rem;
+          color: $dark-color;
+        }
+
+        p {
+          margin-bottom: 0;
+          font-size: 0.9rem;
+        }
+      }
+
+      .item-total {
+        font-weight: 600;
+        color: $primary-color;
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  .success-actions {
+    .btn {
+      padding: 12px 24px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .checkout-steps {
+    flex-direction: column;
+    gap: 1rem;
+
+    .step {
+      flex-direction: row;
+      width: 100%;
+
+      .step-number {
+        margin-right: 1rem;
+        margin-bottom: 0;
+      }
+
+      .step-content {
+        text-align: left;
+        flex: 1;
+      }
+
+      .step-connector {
+        display: none;
+      }
+    }
+  }
+
+  .checkout-header {
+    .checkout-title {
+      font-size: 2rem;
+    }
+  }
+
+  .order-summary-card {
+    position: static;
+    margin-top: 2rem;
+  }
+
+  .checkout-navigation {
+    .d-flex {
+      flex-direction: column;
+      gap: 1rem;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+
+  .success-title {
+    font-size: 2rem;
+  }
+
+  .success-actions {
+    .d-flex {
+      flex-direction: column;
+      gap: 1rem;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .checkout-page,
+  .checkout-success-page {
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  .order-items {
+    .order-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+
+      .item-total {
+        align-self: flex-end;
+      }
+    }
+  }
+}
+
+// Loading States
+.checkout-loading {
+  .spinner-border {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+// Form Validation States
+.form-control.is-invalid {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}

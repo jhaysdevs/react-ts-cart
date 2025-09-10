@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import { Alert, Container, Spinner } from 'react-bootstrap'
 import Masonry from 'react-masonry-css'
@@ -9,7 +9,6 @@ import '../styles/pages/Store.scss'
 
 export function Store() {
   const { products, loading, error, refetch } = useProductsContext()
-  const [visibleProducts, setVisibleProducts] = useState<number[]>([])
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
@@ -22,23 +21,6 @@ export function Store() {
     500: 1,
   }
 
-  // AJAX-style loading animation for products
-  useEffect(() => {
-    console.log('Store useEffect - loading:', loading, 'products.length:', products.length)
-    if (!loading && products.length > 0) {
-      console.log('Starting animation for', products.length, 'products')
-      setVisibleProducts([])
-      
-      // Animate products in one by one with staggered delays
-      products.forEach((_, index) => {
-        setTimeout(() => {
-          setVisibleProducts(prev => [...prev, index])
-        }, index * 100) // 100ms delay between each product
-      })
-    } else if (!loading && products.length === 0) {
-      console.log('No products to animate - products array is empty')
-    }
-  }, [loading, products.length])
 
   // Render content based on state
   const renderContent = () => {
@@ -91,33 +73,24 @@ export function Store() {
       )
     }
 
-    console.log('Rendering with products:', products.length, 'visible:', visibleProducts.length)
     return (
       <Masonry
         breakpointCols={breakpointColumnsObj}
         className='masonry-grid'
         columnClassName='masonry-grid_column'>
         {Array.isArray(products)
-          ? products.map((product, index) => {
-              const isVisible = visibleProducts.includes(index)
-              return (
-                <div 
-                  key={product.id} 
-                  className={`masonry-item ${isVisible ? 'ajax-loaded' : 'ajax-loading'}`}
-                  data-id={product.id}
-                  style={{ 
-                    '--item-index': index,
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
-                    transition: 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
-                  } as React.CSSProperties}
-                >
-                  <AnimatedStoreItem
-                    product={product}
-                  />
-                </div>
-              )
-            })
+          ? products.map((product, index) => (
+              <div 
+                key={product.id} 
+                className='masonry-item'
+                data-id={product.id}
+                style={{ 
+                  '--item-index': index,
+                } as React.CSSProperties}
+              >
+                <AnimatedStoreItem product={product} />
+              </div>
+            ))
           : null}
       </Masonry>
     )

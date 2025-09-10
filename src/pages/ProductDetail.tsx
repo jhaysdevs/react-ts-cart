@@ -10,7 +10,7 @@ import { formatCurrency } from '../utilities/formatCurrency'
 export function ProductDetail() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const { products, loading, error, refetch, isRetrying } = useProductsContext()
+  const { products, loading, error, refetch } = useProductsContext()
   const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } =
     useShoppingCart()
 
@@ -50,9 +50,9 @@ export function ProductDetail() {
             <button 
               className='btn btn-outline-danger' 
               onClick={refetch}
-              disabled={isRetrying}
+              disabled={loading}
             >
-              {isRetrying ? (
+              {loading ? (
                 <>
                   <Spinner 
                     animation='border' 
@@ -60,7 +60,7 @@ export function ProductDetail() {
                     className='me-2' 
                     role='status'
                   />
-                  Retrying...
+                  Loading...
                 </>
               ) : (
                 'Try Again'

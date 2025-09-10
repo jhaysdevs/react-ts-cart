@@ -6,6 +6,8 @@ import { ProductsProvider } from './context/ProductsContext'
 import { ShoppingCartProvider } from './context/ShoppingCartContext'
 import { About } from './pages/About'
 import { Cart } from './pages/Cart'
+import { Checkout } from './pages/Checkout'
+import { CheckoutSuccess } from './pages/CheckoutSuccess'
 import { Home } from './pages/Home'
 import { Privacy } from './pages/Privacy'
 import { ProductDetail } from './pages/ProductDetail'
@@ -21,6 +23,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/store' element={<Store />} />
             <Route path='/cart' element={<Cart />} />
+            <Route path='/checkout' element={<Checkout />} />
+            <Route path='/checkout/success' element={<CheckoutSuccess />} />
             <Route path='/product/:id' element={<ProductDetail />} />
             <Route path='/about' element={<About />} />
             <Route path='/privacy' element={<Privacy />} />
