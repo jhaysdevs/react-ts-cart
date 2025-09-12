@@ -70,12 +70,15 @@
 
 // Quantity Button Mixins - Simplified to use Bootstrap defaults
 @mixin quantity-btn-base {
-  border-radius: 50%;
+  border-radius: 50% !important;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   transition: $transition-fast;
+  width: 40px;
+  height: 40px;
+  padding: 0;
 
   &:hover {
     transform: scale(1.1);
@@ -157,7 +160,8 @@
 .quantity-controls {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: space-between;
+  width: 100%;
 
   &.quantity-controls-sm {
     gap: 0.5rem;
