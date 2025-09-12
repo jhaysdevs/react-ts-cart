@@ -47,19 +47,10 @@ export function ProductDetail() {
           <p>{error}</p>
           <hr />
           <div className='d-flex justify-content-end'>
-            <button 
-              className='btn btn-outline-danger' 
-              onClick={refetch}
-              disabled={loading}
-            >
+            <button className='btn btn-outline-danger' onClick={refetch} disabled={loading}>
               {loading ? (
                 <>
-                  <Spinner 
-                    animation='border' 
-                    size='sm' 
-                    className='me-2' 
-                    role='status'
-                  />
+                  <Spinner animation='border' size='sm' className='me-2' role='status' />
                   Loading...
                 </>
               ) : (
@@ -149,13 +140,23 @@ export function ProductDetail() {
                     <div
                       className='d-flex align-items-center justify-content-center'
                       style={{ gap: '1rem' }}>
-                      <Button size='lg' onClick={() => product && decreaseCartQuantity(product.id)}>
+                      <Button
+                        size='lg'
+                        variant='outline-primary'
+                        className='rounded-circle'
+                        style={{ width: '50px', height: '50px' }}
+                        onClick={() => product && decreaseCartQuantity(product.id)}>
                         -
                       </Button>
                       <span className='fs-4 text-center' style={{ minWidth: '120px' }}>
                         {quantity} in cart
                       </span>
-                      <Button size='lg' onClick={() => product && increaseCartQuantity(product)}>
+                      <Button
+                        size='lg'
+                        variant='outline-primary'
+                        className='rounded-circle'
+                        style={{ width: '50px', height: '50px' }}
+                        onClick={() => product && increaseCartQuantity(product)}>
                         +
                       </Button>
                     </div>

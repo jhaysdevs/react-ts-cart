@@ -1,5 +1,6 @@
 @use '../variables' as *;
 @use '../keyframes' as *;
+@use '../utilities' as *;
 
 .store-page {
   min-height: 100vh;
@@ -139,23 +140,7 @@
   animation: slideInUp 0.3s ease-out;
 }
 
-.quantity-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  transition: $transition-fast;
-  border: 2px solid #dee2e6;
-
-  &:hover {
-    transform: scale(1.1);
-    border-color: $primary-color;
-    color: $primary-color;
-  }
-}
+// Quantity buttons use Bootstrap defaults with custom classes for sizing only
 
 .quantity-display {
   min-width: 60px;

@@ -50,50 +50,42 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
       className={`cart-item-card ${isRemoving ? 'removing' : ''} ${isUpdating ? 'updating' : ''}`}>
       <Card.Body>
         <Stack direction='horizontal' gap={3} className='d-flex align-items-stretch'>
-          <div
-            className='product-image-container'
-            onClick={handleProductClick}>
-            <img
-              src={product.image}
-              alt={product.name}
-            />
+          <div className='product-image-container' onClick={handleProductClick}>
+            <img src={product.image} alt={product.name} />
           </div>
 
-          <div
-            className='me-auto product-details'
-            onClick={handleProductClick}>
+          <div className='me-auto product-details' onClick={handleProductClick}>
             <h6 className='mb-1 product-name'>{product.name}</h6>
             <p className='text-muted mb-1 price-text'>
-              {formatCurrency(product.price)} each
+              <strong>{formatCurrency(product.price)}</strong> × {quantity}
             </p>
-            <div className='quantity-controls d-flex align-items-center gap-2'>
+            <div className='quantity-controls d-flex align-items-end gap-2'>
               <Button
-                variant='outline-secondary'
-                size='sm'
+                variant='outline-primary'
+                size='md'
                 onClick={(e) => {
                   e.stopPropagation()
                   handleDecrease()
                 }}
                 disabled={quantity <= 1}
-                className='quantity-btn'>
+                className='rounded-circle'>
                 −
               </Button>
               <span className='quantity-display'>{quantity}</span>
               <Button
-                variant='outline-secondary'
-                size='sm'
+                variant='outline-primary'
+                size='md'
                 onClick={(e) => {
                   e.stopPropagation()
                   handleIncrease()
                 }}
-                className='quantity-btn'>
+                className='rounded-circle'>
                 +
               </Button>
             </div>
           </div>
 
-          <div 
-            className='price-section text-center'>
+          <div className='price-section h-auto text-center d-flex flex-column align-items-center justify-end'>
             <div className='item-total fw-bold fs-5'>
               {formatCurrency(product.price * quantity)}
             </div>

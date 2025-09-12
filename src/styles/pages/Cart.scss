@@ -1,5 +1,6 @@
 @use '../variables' as *;
 @use '../keyframes' as *;
+@use '../utilities' as *;
 
 // Cart Page Animations
 .cart-empty-animation {
@@ -96,20 +97,7 @@
   margin-top: 8px;
 }
 
-.quantity-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  transition: $transition-fast;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-}
+// Quantity buttons use Bootstrap defaults with custom classes for sizing only
 
 .quantity-display {
   min-width: 30px;
@@ -190,15 +178,9 @@
   }
 }
 
-// Vertical separation for card-body elements
+// Vertical separation for card-body elements - using gap for spacing
 .card-body {
   .d-flex.align-items-stretch.hstack.gap-3 {
-    > * {
-      margin-bottom: 1rem;
-      
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
+    // No margin-bottom needed - gap handles spacing
   }
 }

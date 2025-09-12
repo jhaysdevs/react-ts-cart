@@ -170,7 +170,7 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
                   size='sm'
                   onClick={handleDecrease}
                   className='quantity-btn'
-                  variant='outline-secondary'>
+                  variant='outline-primary'>
                   −
                 </Button>
                 <span className='fs-6 text-center quantity-display'>
@@ -180,7 +180,7 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
                   size='sm'
                   onClick={handleIncrease}
                   className='quantity-btn'
-                  variant='outline-secondary'>
+                  variant='outline-primary'>
                   +
                 </Button>
               </div>

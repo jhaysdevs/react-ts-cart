@@ -1,5 +1,6 @@
 @use '../variables' as *;
 @use '../keyframes' as *;
+@use '../utilities' as *;
 
 .product-detail-page {
   min-height: 100vh;
@@ -185,31 +186,7 @@
   margin-top: 1rem;
 }
 
-.quantity-btn {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.2rem;
-  transition: $transition-fast;
-  border: 2px solid #dee2e6;
-  background: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-
-  &:hover {
-    transform: scale(1.1);
-    border-color: $primary-color;
-    color: $primary-color;
-    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
-  }
-
-  &:active {
-    transform: scale(0.95);
-  }
-}
+// Quantity buttons use Bootstrap defaults with custom classes for sizing only
 
 .quantity-display {
   min-width: 120px;
@@ -266,12 +243,12 @@
     }
   }
 
-  .btn-outline-secondary {
-    &:hover {
-      border-color: $secondary-color;
-      background-color: $secondary-color;
-    }
-  }
+  // .btn-outline-secondary {
+  //   &:hover {
+  //     border-color: $secondary-color;
+  //     background-color: $secondary-color;
+  //   }
+  // }
 }
 
 // Loading States
@@ -383,12 +360,6 @@
     font-size: 1.5rem;
   }
 
-  .quantity-btn {
-    width: 45px;
-    height: 45px;
-    font-size: 1.1rem;
-  }
-
   .quantity-display {
     min-width: 100px;
     padding: 0.75rem;
@@ -437,12 +408,6 @@
 
   .product-price {
     font-size: 1.25rem;
-  }
-
-  .quantity-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
   }
 
   .quantity-display {

@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useShoppingCart } from '../context/ShoppingCartContext'
 
 export function Navbar() {
-  const { cartQuantity } = useShoppingCart()
+  const { cartQuantity, openCart } = useShoppingCart()
   const navigate = useNavigate()
   return (
     <NavbarBs sticky='top' className='bg-white shadow-sm'>
@@ -25,7 +25,7 @@ export function Navbar() {
         </Nav>
         {cartQuantity > 0 && (
           <Button
-            onClick={() => navigate('/cart')}
+            onClick={openCart}
             style={{
               width: '3rem',
               height: '3rem',
