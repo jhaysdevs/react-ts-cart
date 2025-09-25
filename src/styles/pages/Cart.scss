@@ -129,11 +129,12 @@
 
 .product-image-container {
   min-width: 120px;
+  max-width: 50%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border-radius: 8px;
   overflow: hidden;
   transition: transform 0.2s ease;
 
@@ -141,14 +142,15 @@
     width: 100%;
   }
 
-  &:hover {
-    transform: scale(1.05);
-  }
-
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 }
 

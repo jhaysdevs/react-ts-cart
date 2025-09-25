@@ -47,7 +47,7 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
   return (
     <Card
       className={`cart-item-card ${isRemoving ? 'removing' : ''} ${isUpdating ? 'updating' : ''}`}>
-      <Card.Body>
+      <Card.Body className='p-0 overflow-hidden'>
         <div
           className='d-flex flex-column flex-md-row align-items-stretch gap-3'
           style={{ transition: 'all 0.3s ease' }}>
@@ -59,7 +59,7 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
             )}
           </div>
 
-          <div className='me-auto product-details' onClick={handleProductClick}>
+          <div className='me-auto py-3 product-details' onClick={handleProductClick}>
             <h6 className='mb-1 product-name'>{product.name}</h6>
             <p className='text-muted mb-1 price-text'>
               <strong>{formatCurrency(product.price)}</strong> × {quantity}
@@ -90,7 +90,7 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
             </div>
           </div>
 
-          <div className='price-section h-auto text-center d-flex flex-column align-items-center justify-end'>
+          <div className='price-section py-3 pe-3 h-auto text-center d-flex flex-column align-items-center justify-end'>
             <div className='item-total fw-bold fs-5'>
               {formatCurrency(product.price * quantity)}
             </div>
