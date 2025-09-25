@@ -1,17 +1,16 @@
-import { useLocation, useNavigate } from 'react-router-dom'
-import { Container, Card, Button, Alert, Row, Col } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
+import { Container, Card, Button, Alert, Row, Col } from 'react-bootstrap'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useShoppingCart } from '../context/ShoppingCartContext'
-import { formatCurrency } from '../utilities/formatCurrency'
 import { OrderSummary } from '../types/checkout'
-import '../styles/pages/Checkout.scss'
+import { formatCurrency } from '../utilities/formatCurrency'
 
 export function CheckoutSuccess() {
   const location = useLocation()
   const navigate = useNavigate()
   const { cartItems } = useShoppingCart()
-  
+
   const [orderNumber, setOrderNumber] = useState<string>('')
   const [orderSummary, setOrderSummary] = useState<OrderSummary | null>(null)
 
@@ -76,7 +75,9 @@ export function CheckoutSuccess() {
                       <div className='summary-line'>
                         <span>Shipping</span>
                         <span>
-                          {orderSummary.shipping === 0 ? 'FREE' : formatCurrency(orderSummary.shipping)}
+                          {orderSummary.shipping === 0
+                            ? 'FREE'
+                            : formatCurrency(orderSummary.shipping)}
                         </span>
                       </div>
                       {orderSummary.giftWrap > 0 && (
@@ -99,16 +100,34 @@ export function CheckoutSuccess() {
                   {cartItems.map((item) => (
                     <div key={item.product.id} className='order-item'>
                       <div className='item-image'>
-                        <img 
-                          src={item.product.image} 
-                          alt={item.product.name}
-                          className='img-fluid'
-                        />
+                        {item.product.image ? (
+                          <img
+                            src={item.product.image}
+                            alt={item.product.name}
+                            className='img-fluid'
+                          />
+                        ) : (
+                          <div
+                            style={{
+                              width: '100%',
+                              height: '80px',
+                              backgroundColor: '#f8f9fa',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              color: '#6c757d',
+                              fontSize: '1.5rem',
+                            }}>
+                            📦
+                          </div>
+                        )}
                       </div>
                       <div className='item-details'>
                         <h6>{item.product.name}</h6>
                         <p className='text-muted mb-1'>Quantity: {item.quantity}</p>
-                        <p className='text-muted'>Price: {formatCurrency(item.product.price)} each</p>
+                        <p className='text-muted'>
+                          Price: {formatCurrency(item.product.price)} each
+                        </p>
                       </div>
                       <div className='item-total'>
                         {formatCurrency(item.product.price * item.quantity)}
@@ -120,19 +139,10 @@ export function CheckoutSuccess() {
             </Card>
 
             <div className='success-actions text-center mt-4'>
-              <Button 
-                variant='primary' 
-                size='lg' 
-                onClick={handleContinueShopping}
-                className='me-3'
-              >
+              <Button variant='primary' size='lg' onClick={handleContinueShopping} className='me-3'>
                 Continue Shopping
               </Button>
-              <Button 
-                variant='outline-secondary' 
-                size='lg' 
-                onClick={handleViewOrder}
-              >
+              <Button variant='outline-secondary' size='lg' onClick={handleViewOrder}>
                 View Order Details
               </Button>
             </div>

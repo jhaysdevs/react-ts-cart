@@ -3,8 +3,8 @@ import { Card, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import { useShoppingCart } from '../context/ShoppingCartContext'
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver'
 import { Product } from '../hooks/useProducts'
-import '../styles/pages/Store.scss'
 import { formatCurrency } from '../utilities/formatCurrency'
 
 type AnimatedStoreItemProps = {
@@ -19,6 +19,13 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
   const navigate = useNavigate()
   const quantity = getItemQuantity(product.id)
   const [isUpdating, setIsUpdating] = useState(false)
+
+  // Intersection observer for viewport-based animations
+  const [elementRef, isIntersecting] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '50px',
+    triggerOnce: true,
+  })
 
   // Convert product ID to numeric for navigation (keeping compatibility with existing routes)
   const numericId = parseInt(product.id.replace(/-/g, '').substring(0, 8), 16)
@@ -63,38 +70,31 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
 
   return (
     <Card
-      className={`h-100 d-flex flex-column store-item-card ${isUpdating ? 'updating' : ''}`}
+      ref={elementRef}
+      className={`h-100 d-flex flex-column store-item-card ${isUpdating ? 'updating' : ''} ${
+        isIntersecting ? 'animate-in' : 'animate-out'
+      }`}
       style={{
-        animationDelay: `${getAnimationDelay()}s`,
+        animationDelay: isIntersecting ? `${getAnimationDelay()}s` : '0s',
         transition: 'all 0.15s ease',
       }}>
-      <div
-        className='product-image-container'
-        style={{
-          height: '200px',
-          width: '100%',
-          overflow: 'hidden',
-          cursor: 'pointer',
-          position: 'relative',
-        }}
-        onClick={handleProductClick}>
-        <Card.Img
-          variant='top'
-          src={product.image}
-          style={{
-            objectFit: 'cover',
-            height: '100%',
-            width: '100%',
-            transition: 'transform 0.3s ease',
-          }}
-          alt={product.name}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'scale(1.05)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'scale(1)'
-          }}
-        />
+      <div className='product-image-container' onClick={handleProductClick}>
+        {product.image ? (
+          <Card.Img
+            variant='top'
+            src={product.image}
+            className='product-image'
+            alt={product.name}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.05)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)'
+            }}
+          />
+        ) : (
+          <div className='store-item-placeholder'>📦 No Image</div>
+        )}
         <div className='image-overlay'>
           <div className='overlay-content'>
             <span>View Details</span>
@@ -103,24 +103,7 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
 
         {/* Cart indicator badge */}
         {quantity > 0 && (
-          <div
-            style={{
-              position: 'absolute',
-              top: '8px',
-              right: '8px',
-              backgroundColor: '#28a745',
-              color: 'white',
-              borderRadius: '50%',
-              width: '24px',
-              height: '24px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '12px',
-              fontWeight: 'bold',
-              zIndex: 2,
-            }}
-            title={`${quantity} in cart`}>
+          <div className='cart-indicator-badge' title={`${quantity} in cart`}>
             {quantity}
           </div>
         )}
@@ -129,24 +112,12 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
       <Card.Body className='d-flex flex-column flex-grow-1 p-3'>
         <Card.Title
           className='h6 mb-2 text-truncate product-title'
-          style={{
-            cursor: 'pointer',
-            fontSize: '1rem',
-            fontWeight: '600',
-            lineHeight: '1.3',
-          }}
           onClick={handleProductClick}
           title={product.name}>
           {product.name}
         </Card.Title>
 
-        <Card.Text
-          className='mb-3 text-primary fw-bold product-price'
-          style={{
-            cursor: 'pointer',
-            fontSize: '1.1rem',
-          }}
-          onClick={handleProductClick}>
+        <Card.Text className='mb-3 text-primary fw-bold product-price' onClick={handleProductClick}>
           {formatCurrency(product.price)}
         </Card.Text>
 
@@ -160,12 +131,8 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
               + Add To Cart
             </Button>
           ) : (
-            <div
-              className='d-flex align-items-center justify-content-between flex-column'
-              style={{ gap: '1rem' }}>
-              <div
-                className='d-flex align-items-center justify-content-center quantity-controls'
-                style={{ gap: '1rem' }}>
+            <div className='d-flex flex-column align-items-center justify-content-between gap-3 quantity-controls-container'>
+              <div className='d-flex align-items-center justify-content-center quantity-controls w-100 flex-sm-grow-1'>
                 <Button
                   size='sm'
                   onClick={handleDecrease}
@@ -173,7 +140,7 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
                   variant='outline-primary'>
                   −
                 </Button>
-                <span className='fs-6 text-center quantity-display'>
+                <span className='fs-6 text-center quantity-display flex-grow-1'>
                   <strong>{quantity}</strong> in cart
                 </span>
                 <Button
@@ -188,7 +155,7 @@ export function AnimatedStoreItem({ product, index = 0, gridPosition }: Animated
                 onClick={handleRemove}
                 variant='danger'
                 size='sm'
-                className='w-100 remove-btn'>
+                className='w-100 w-sm-auto remove-btn'>
                 Remove from Cart
               </Button>
             </div>

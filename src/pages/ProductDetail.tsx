@@ -90,15 +90,19 @@ export function ProductDetail() {
       <Row>
         <Col md={6}>
           <Card>
-            <Card.Img
-              variant='top'
-              src={product.image}
-              style={{
-                objectFit: 'cover',
-                height: '400px',
-                width: '100%',
-              }}
-            />
+            {product.image ? (
+              <Card.Img
+                variant='top'
+                src={product.image}
+                style={{
+                  objectFit: 'cover',
+                  height: '400px',
+                  width: '100%',
+                }}
+              />
+            ) : (
+              <div className='product-image-placeholder'>📦 No Image Available</div>
+            )}
           </Card>
         </Col>
         <Col md={6}>

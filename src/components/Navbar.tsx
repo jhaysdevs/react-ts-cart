@@ -1,11 +1,22 @@
 import { Button, Container, Nav, Navbar as NavbarBs } from 'react-bootstrap'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
 import { useShoppingCart } from '../context/ShoppingCartContext'
 
 export function Navbar() {
   const { cartQuantity, openCart } = useShoppingCart()
+  const location = useLocation()
   const navigate = useNavigate()
+
+  const isOnCartPage = location.pathname === '/cart'
+
+  const handleCartClick = () => {
+    if (isOnCartPage) {
+      openCart()
+    } else {
+      navigate('/cart')
+    }
+  }
   return (
     <NavbarBs sticky='top' className='bg-white shadow-sm'>
       <Container>
@@ -25,7 +36,7 @@ export function Navbar() {
         </Nav>
         {cartQuantity > 0 && (
           <Button
-            onClick={openCart}
+            onClick={handleCartClick}
             style={{
               width: '3rem',
               height: '3rem',

@@ -3,6 +3,18 @@
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
+// Product image placeholder styles
+.product-image-placeholder {
+  height: 400px;
+  width: 100%;
+  background-color: $light-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $secondary-color;
+  font-size: 2rem;
+}
+
 // Product Detail Hero Section
 .product-detail-hero {
   background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);

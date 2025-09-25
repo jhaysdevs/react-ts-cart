@@ -24,33 +24,26 @@ export function CartItem({ product, quantity }: CartItemProps) {
 
   return (
     <Stack direction='horizontal' gap={2} className='d-flex align-items-start'>
-      <div
-        className='d-flex align-items-start'
-        style={{
-          width: '125px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <img
-          src={product.image}
-          style={{ width: '125px', height: '75px', objectFit: 'cover', cursor: 'pointer' }}
-          onClick={handleProductClick}
-          alt={product.name}
-        />
+      <div className='d-flex align-items-start cart-item-image-container'>
+        {product.image ? (
+          <img
+            src={product.image}
+            className='cart-item-image'
+            onClick={handleProductClick}
+            alt={product.name}
+          />
+        ) : (
+          <div className='cart-item-placeholder' onClick={handleProductClick}>
+            📦
+          </div>
+        )}
       </div>
-      <div className='me-auto' style={{ cursor: 'pointer' }} onClick={handleProductClick}>
+      <div className='me-auto cart-item-details' onClick={handleProductClick}>
         <div>
           {product.name}{' '}
-          {quantity > 1 && (
-            <span className='text-muted' style={{ fontSize: '.65rem' }}>
-              x{quantity}
-            </span>
-          )}
+          {quantity > 1 && <span className='text-muted cart-item-quantity-badge'>x{quantity}</span>}
         </div>
-        <div className='text-muted' style={{ fontSize: '.75rem' }}>
-          {formatCurrency(product.price)}
-        </div>
+        <div className='text-muted cart-item-price'>{formatCurrency(product.price)}</div>
       </div>
       <div> {formatCurrency(product.price * quantity)}</div>
       <Button variant='outline-danger' size='sm' onClick={() => removeFromCart(product.id)}>
