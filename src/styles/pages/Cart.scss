@@ -19,8 +19,9 @@
 .cart-summary {
   animation: slideInRight 0.6s ease-out;
 
-  @media (max-width: $breakpoint-md) {
-    animation: slideInUp 0.6s ease-out;
+  @media (min-width: $breakpoint-md) {
+    position: sticky;
+    top: 80px;
   }
 }
 
