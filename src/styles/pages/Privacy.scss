@@ -68,7 +68,7 @@
 }
 
 // Responsive adjustments
-@media (max-width: 768px) {
+@media (max-width: $breakpoint-sm) {
   .privacy-hero {
     padding: 60px 0;
   }

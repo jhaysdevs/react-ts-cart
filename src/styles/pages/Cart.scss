@@ -18,6 +18,10 @@
 
 .cart-summary {
   animation: slideInRight 0.6s ease-out;
+
+  @media (max-width: $breakpoint-md) {
+    animation: slideInUp 0.6s ease-out;
+  }
 }
 
 .loading-spinner {
@@ -132,7 +136,7 @@
   overflow: hidden;
   transition: transform 0.2s ease;
 
-  @media (max-width: 768px) {
+  @media (max-width: $breakpoint-sm) {
     width: 100%;
   }
 

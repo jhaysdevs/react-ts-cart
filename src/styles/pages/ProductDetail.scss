@@ -345,7 +345,7 @@
 }
 
 // Responsive Design
-@media (max-width: 768px) {
+@media (max-width: $breakpoint-sm) {
   .product-detail-hero {
     padding: 60px 0;
 
@@ -391,7 +391,7 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: $breakpoint-xs) {
   .product-detail-hero {
     padding: 40px 0;
 

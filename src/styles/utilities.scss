@@ -174,7 +174,7 @@
 
 // Container responsive styles for better mobile experience
 // Using Bootstrap's lg breakpoint (< 992px) for consistency
-@media (max-width: 991.98px) {
+@media (max-width: $breakpoint-md) {
   .container,
   .container-md,
   .container-sm {

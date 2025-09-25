@@ -414,7 +414,7 @@
   font-weight: 600;
 }
 
-@media (max-width: 768px) {
+@media (max-width: $breakpoint-sm) {
   .hero-section {
     padding: 60px 0;
   }
@@ -457,7 +457,7 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: $breakpoint-xs) {
   .quick-links-card {
     .card-body {
       padding: 2rem 1rem !important;
