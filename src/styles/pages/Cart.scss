@@ -129,7 +129,6 @@
 
 .product-image-container {
   min-width: 120px;
-  max-width: 50%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -137,6 +136,10 @@
   cursor: pointer;
   overflow: hidden;
   transition: transform 0.2s ease;
+
+  .cart-page-container & {
+    max-width: 50%;
+  }
 
   @media (max-width: $breakpoint-sm) {
     width: 100%;

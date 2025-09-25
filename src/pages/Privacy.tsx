@@ -84,7 +84,7 @@ export function Privacy() {
       {/* Hero Section - Full Width Background */}
       <div className='privacy-hero'>
         <div className='hero-content'>
-          <Container>
+          <Container className='privacy-hero-container'>
             <Row className='justify-content-center text-center'>
               <Col lg={8}>
                 <div className='privacy-icon mb-3' style={{ fontSize: '4rem' }}>
@@ -101,7 +101,7 @@ export function Privacy() {
         </div>
       </div>
 
-      <Container className='pb-5'>
+      <Container className='privacy-page-container pb-5'>
         <Row>
           <Col lg={8} className='mx-auto'>
             {/* Privacy Overview Card */}

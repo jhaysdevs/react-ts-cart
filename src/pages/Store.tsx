@@ -24,22 +24,22 @@ export function Store() {
   const renderContent = () => {
     if (loading) {
       return (
-        <div
-          className='d-flex justify-content-center align-items-center'
+        <Container
+          className='store-loading-container d-flex justify-content-center align-items-center'
           style={{ minHeight: '400px' }}>
           <div className='text-center store-loading'>
             <Spinner animation='border' role='status' className='store-loading-spinner' />
             <div className='mt-3'>Loading products...</div>
             <small className='text-muted'>Fetching all products for seamless browsing</small>
           </div>
-        </div>
+        </Container>
       )
     }
 
     if (error) {
       return (
-        <div
-          className='d-flex justify-content-center align-items-center'
+        <Container
+          className='store-error-container d-flex justify-content-center align-items-center'
           style={{ minHeight: '400px' }}>
           <Alert variant='danger' className='text-center' style={{ maxWidth: '500px' }}>
             <Alert.Heading>Error Loading Products</Alert.Heading>
@@ -51,20 +51,20 @@ export function Store() {
               </button>
             </div>
           </Alert>
-        </div>
+        </Container>
       )
     }
 
     if (products.length === 0) {
       return (
-        <div
-          className='d-flex justify-content-center align-items-center'
+        <Container
+          className='store-no-products-container d-flex justify-content-center align-items-center'
           style={{ minHeight: '400px' }}>
           <Alert variant='info' className='text-center'>
             <Alert.Heading>No Products Available</Alert.Heading>
             <p>There are no products to display at the moment.</p>
           </Alert>
-        </div>
+        </Container>
       )
     }
 
@@ -93,7 +93,7 @@ export function Store() {
   }
 
   return (
-    <div className='store-page'>
+    <Container className='store-page'>
       {/* Hero Section - Full Width Background */}
       <div className='store-hero'>
         <div className='hero-content'>
@@ -110,6 +110,6 @@ export function Store() {
       </div>
 
       <Container className='py-4'>{renderContent()}</Container>
-    </div>
+    </Container>
   )
 }

@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 import { ShoppingCart } from '../components/ShoppingCart'
 import { useLocalStorage } from '../hooks/useLocalStorage'
@@ -33,6 +34,9 @@ export function useShoppingCart() {
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shopping-cart', [])
+  const location = useLocation()
+
+  const isOnCartPage = location.pathname === '/cart'
 
   // Utility function to consolidate duplicate items
   const consolidateItems = (items: CartItem[]): CartItem[] => {
@@ -140,7 +144,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         cartQuantity,
       }}>
       {children}
-      <ShoppingCart isOpen={isOpen} />
+      {isOnCartPage && <ShoppingCart isOpen={isOpen} />}
     </ShoppingCartContext.Provider>
   )
 }

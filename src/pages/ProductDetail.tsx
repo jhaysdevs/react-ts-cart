@@ -27,7 +27,7 @@ export function ProductDetail() {
   if (loading) {
     return (
       <Container
-        className='d-flex justify-content-center align-items-center'
+        className='product-detail-loading-container d-flex justify-content-center align-items-center'
         style={{ minHeight: '400px' }}>
         <div className='text-center'>
           <Spinner animation='border' role='status' />
@@ -40,7 +40,7 @@ export function ProductDetail() {
   if (error) {
     return (
       <Container
-        className='d-flex justify-content-center align-items-center'
+        className='product-detail-error-container d-flex justify-content-center align-items-center'
         style={{ minHeight: '400px' }}>
         <Alert variant='danger' className='text-center' style={{ maxWidth: '500px' }}>
           <Alert.Heading>Error Loading Product</Alert.Heading>
@@ -66,7 +66,7 @@ export function ProductDetail() {
   if (!product) {
     return (
       <Container
-        className='d-flex justify-content-center align-items-center'
+        className='product-detail-not-found-container d-flex justify-content-center align-items-center'
         style={{ minHeight: '400px' }}>
         <Alert variant='warning' className='text-center' style={{ maxWidth: '500px' }}>
           <Alert.Heading>Product Not Found</Alert.Heading>
@@ -86,7 +86,7 @@ export function ProductDetail() {
   }
 
   return (
-    <Container className='py-4'>
+    <Container className='product-detail-container py-4'>
       <Row>
         <Col md={6}>
           <Card>

@@ -53,7 +53,7 @@ export function About() {
       {/* Hero Section - Full Width Background */}
       <div className='about-hero'>
         <div className='hero-content'>
-          <Container>
+          <Container className='about-hero-container'>
             <Row className='justify-content-center text-center'>
               <Col lg={8}>
                 <div className='about-icon mb-3'>🏪</div>
@@ -68,7 +68,7 @@ export function About() {
         </div>
       </div>
 
-      <Container className='my-4'>
+      <Container className='about-page-container my-4'>
         {/* Company Story Section */}
         <Row className='my-4'>
           <Col lg={10} className='mx-auto'>

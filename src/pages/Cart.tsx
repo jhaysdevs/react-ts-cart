@@ -50,7 +50,7 @@ export function Cart() {
   // Display all consolidated cart items at once
   if (consolidatedCartItems.length === 0) {
     return (
-      <Container className='py-5'>
+      <Container className='cart-page-container py-5'>
         <Row className='justify-content-center'>
           <Col md={8} className='text-center'>
             <div className='cart-empty-animation'>

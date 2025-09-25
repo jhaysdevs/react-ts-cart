@@ -13,7 +13,7 @@ export function Home() {
       {/* Hero Section - Full Width Background */}
       <div className='hero-section'>
         <div className='hero-content'>
-          <Container>
+          <Container className='home-hero-container'>
             <Row className='justify-content-center text-center'>
               <Col lg={10}>
                 <div className='hero-badge mb-3'>
@@ -49,7 +49,7 @@ export function Home() {
       </div>
 
       {/* Features Section */}
-      <Container className='py-5'>
+      <Container className='home-features-container py-5'>
         <Row className='text-center mb-5'>
           <Col>
             <h2 className='section-title mb-3'>Why Choose Us?</h2>

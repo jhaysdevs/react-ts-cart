@@ -47,7 +47,7 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
   return (
     <Card
       className={`cart-item-card ${isRemoving ? 'removing' : ''} ${isUpdating ? 'updating' : ''}`}>
-      <Card.Body className='p-0 overflow-hidden'>
+      <Card.Body className='p-0'>
         <div
           className='d-flex flex-column flex-md-row align-items-stretch gap-3'
           style={{ transition: 'all 0.3s ease' }}>
@@ -60,25 +60,24 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
           </div>
 
           <div className='me-auto py-3 product-details' onClick={handleProductClick}>
-            <h6 className='mb-1 product-name'>{product.name}</h6>
+            <h6 className='mb-1 fs-5 product-name'>{product.name}</h6>
             <p className='text-muted mb-1 price-text'>
               <strong>{formatCurrency(product.price)}</strong> × {quantity}
             </p>
             <div className='quantity-controls d-flex align-items-end gap-2'>
               <Button
-                variant='outline-primary'
+                variant='danger'
                 size='sm'
                 onClick={(e) => {
                   e.stopPropagation()
                   handleDecrease()
                 }}
-                disabled={quantity <= 1}
                 className='rounded-circle'>
-                −
+                {quantity <= 1 ? '×' : '−'}
               </Button>
               <span className='quantity-display'>{quantity}</span>
               <Button
-                variant='outline-primary'
+                variant='primary'
                 size='sm'
                 onClick={(e) => {
                   e.stopPropagation()
@@ -102,7 +101,7 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
                 handleRemove()
               }}
               className='remove-btn'>
-              Remove
+              Remove {quantity > 1 ? 'All' : ''}
             </Button>
           </div>
         </div>

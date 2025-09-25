@@ -201,7 +201,7 @@ export function Checkout() {
 
   return (
     <div className='checkout-page'>
-      <Container className='py-4'>
+      <Container className='checkout-page-container py-4'>
         {/* Header */}
         <div className='checkout-header text-center mb-4'>
           <h1 className='checkout-title'>Checkout</h1>
