@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 
 import { AnimatedCartItem } from '../components/AnimatedCartItem'
 import { useShoppingCart } from '../context/ShoppingCartContext'
-import '../styles/pages/Cart.scss'
 import { formatCurrency } from '../utilities/formatCurrency'
 
 export function Cart() {
@@ -49,7 +48,6 @@ export function Cart() {
   }, [consolidatedCartItems])
 
   // Display all consolidated cart items at once
-
   if (consolidatedCartItems.length === 0) {
     return (
       <Container className='py-5'>

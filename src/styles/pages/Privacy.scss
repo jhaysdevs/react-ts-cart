@@ -1,13 +1,10 @@
-@use '../variables' as *;
-@use '../keyframes' as *;
-
 .privacy-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: linear-gradient(135deg, $gradient-light-gray 0%, $gradient-gray 100%);
 }
 
 .privacy-hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, $gradient-blue 0%, $gradient-purple 100%);
   position: relative;
   overflow: hidden;
   padding: 100px 0;

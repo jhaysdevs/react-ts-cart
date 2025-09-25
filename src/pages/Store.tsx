@@ -5,7 +5,6 @@ import Masonry from 'react-masonry-css'
 
 import { AnimatedStoreItem } from '../components/AnimatedStoreItem'
 import { useProductsContext } from '../context/ProductsContext'
-import '../styles/pages/Store.scss'
 
 export function Store() {
   const { products, loading, error, refetch } = useProductsContext()
@@ -16,11 +15,10 @@ export function Store() {
 
   const breakpointColumnsObj = {
     default: 4,
-    1100: 3,
-    700: 2,
-    500: 1,
+    1200: 3,
+    870: 2,
+    580: 1,
   }
-
 
   // Render content based on state
   const renderContent = () => {
@@ -48,10 +46,7 @@ export function Store() {
             <p>{error}</p>
             <hr />
             <div className='d-flex justify-content-end'>
-              <button 
-                className='btn btn-outline-danger' 
-                onClick={refetch}
-              >
+              <button className='btn btn-outline-danger' onClick={refetch}>
                 Try Again
               </button>
             </div>
@@ -80,14 +75,15 @@ export function Store() {
         columnClassName='masonry-grid_column'>
         {Array.isArray(products)
           ? products.map((product, index) => (
-              <div 
-                key={product.id} 
+              <div
+                key={product.id}
                 className='masonry-item'
                 data-id={product.id}
-                style={{ 
-                  '--item-index': index,
-                } as React.CSSProperties}
-              >
+                style={
+                  {
+                    '--item-index': index,
+                  } as React.CSSProperties
+                }>
                 <AnimatedStoreItem product={product} />
               </div>
             ))

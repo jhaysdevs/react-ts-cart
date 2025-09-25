@@ -18,8 +18,8 @@ $gutter-size-mobile: 8px;
   margin-bottom: $gutter-size; // space between items
 }
 
-// Responsive adjustments
-@media (max-width: 500px) {
+// Responsive adjustments using Bootstrap's sm breakpoint (< 576px)
+@media (max-width: 575.98px) {
   .masonry-grid {
     margin-left: -#{$gutter-size-mobile};
 

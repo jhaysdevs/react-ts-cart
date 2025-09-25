@@ -1,7 +1,3 @@
-@use '../variables' as *;
-@use '../keyframes' as *;
-@use '../utilities' as *;
-
 // Cart Page Animations
 .cart-empty-animation {
   animation: fadeInUp 0.8s ease-out;
@@ -94,16 +90,21 @@
 }
 
 .quantity-controls {
+  width: 100%;
+  height: 100%;
   margin-top: 8px;
+
+  button {
+    min-width: 31px;
+  }
 }
 
 // Quantity buttons use Bootstrap defaults with custom classes for sizing only
-
 .quantity-display {
   min-width: 30px;
   text-align: center;
   font-weight: 600;
-  padding: 4px 8px;
+  padding: 0 8px;
   background-color: $light-color;
   border-radius: 6px;
 }
@@ -122,7 +123,7 @@
 }
 
 .product-image-container {
-  width: 120px;
+  min-width: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,6 +131,10 @@
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.2s ease;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 
   &:hover {
     transform: scale(1.05);
@@ -144,6 +149,9 @@
 
 .product-details {
   cursor: pointer;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .price-section {
@@ -178,9 +186,53 @@
   }
 }
 
-// Vertical separation for card-body elements - using gap for spacing
-.card-body {
-  .d-flex.align-items-stretch.hstack.gap-3 {
-    // No margin-bottom needed - gap handles spacing
-  }
+// CartItem component styles
+.cart-item-image-container {
+  width: 125px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-item-image {
+  width: 125px;
+  height: 75px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.cart-item-placeholder {
+  width: 125px;
+  height: 75px;
+  background-color: $light-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.cart-item-details {
+  cursor: pointer;
+}
+
+.cart-item-quantity-badge {
+  font-size: 0.65rem;
+}
+
+.cart-item-price {
+  font-size: 0.75rem;
+}
+
+// AnimatedCartItem placeholder styles
+.cart-item-placeholder {
+  height: 100%;
+  width: 100%;
+  background-color: $light-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $secondary-color;
+  font-size: 1rem;
 }

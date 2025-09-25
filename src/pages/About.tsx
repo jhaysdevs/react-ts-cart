@@ -3,8 +3,6 @@ import { useEffect } from 'react'
 import { Badge, Button, Card, Col, Container, Row } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
-import '../styles/pages/About.scss'
-
 export function About() {
   const navigate = useNavigate()
   const currentYear = new Date().getFullYear()
@@ -58,9 +56,7 @@ export function About() {
           <Container>
             <Row className='justify-content-center text-center'>
               <Col lg={8}>
-                <div className='about-icon mb-3'>
-                  🏪
-                </div>
+                <div className='about-icon mb-3'>🏪</div>
                 <h1 className='fw-bold mb-3'>About Us</h1>
                 <p className='lead mb-0'>
                   Discover our story, mission, and the values that drive us to deliver exceptional
@@ -79,9 +75,7 @@ export function About() {
             <Card className='fade-in mb-4 shadow-sm border-0 story-card'>
               <Card.Body className='p-4'>
                 <div className='text-center'>
-                  <div className='story-icon mb-3'>
-                    📖
-                  </div>
+                  <div className='story-icon mb-3'>📖</div>
                   <h2 className='mb-3'>Our Story</h2>
                   <Badge bg='primary' className='mb-3'>
                     Founded in {foundingYear}
@@ -102,18 +96,15 @@ export function About() {
                   <Col lg={6}>
                     <div className='story-visual text-center mt-4'>
                       <div className='timeline-item mb-3'>
-                        <div
-                          className='timeline-icon bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center'>
+                        <div className='timeline-icon bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center'>
                           {foundingYear}
                         </div>
                         <h6 className='mt-2 mb-1'>Founded</h6>
                         <small className='text-muted'>Started our journey</small>
                       </div>
-                      <div
-                        className='timeline-line bg-primary'></div>
+                      <div className='timeline-line bg-primary'></div>
                       <div className='timeline-item mt-3'>
-                        <div
-                          className='timeline-icon bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center'>
+                        <div className='timeline-icon bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center'>
                           {currentYear}
                         </div>
                         <h6 className='mt-2 mb-1'>Today</h6>
@@ -136,9 +127,7 @@ export function About() {
                 {stats.map((stat, index) => (
                   <Col md={3} key={index}>
                     <div className='stat-card p-4 rounded-3 h-100'>
-                      <div className='stat-icon mb-3'>
-                        {stat.icon}
-                      </div>
+                      <div className='stat-icon mb-3'>{stat.icon}</div>
                       <h4 className='h2 fw-bold text-primary mb-2'>{stat.number}</h4>
                       <p className='text-muted mb-0'>{stat.label}</p>
                     </div>
@@ -157,9 +146,7 @@ export function About() {
                 <Card className='h-100 border-0 shadow-sm mission-card'>
                   <Card.Body className='p-4'>
                     <div className='d-flex align-items-center mb-3'>
-                      <div className='me-3 mission-icon'>
-                        🎯
-                      </div>
+                      <div className='me-3 mission-icon'>🎯</div>
                       <h3 className='mb-0 h4'>Our Mission</h3>
                     </div>
                     <p className='text-muted mb-3'>
@@ -201,18 +188,14 @@ export function About() {
                 <Card className='h-100 border-0 shadow-sm values-card'>
                   <Card.Body className='p-4'>
                     <div className='d-flex align-items-center mb-3'>
-                      <div className='me-3 values-icon'>
-                        💎
-                      </div>
+                      <div className='me-3 values-icon'>💎</div>
                       <h3 className='mb-0 h4'>Our Values</h3>
                     </div>
                     <div className='values-grid'>
                       {values.map((value, index) => (
                         <div key={index} className='value-item mb-3'>
                           <div className='d-flex align-items-start'>
-                            <span className='me-2 value-item-icon'>
-                              {value.icon}
-                            </span>
+                            <span className='me-2 value-item-icon'>{value.icon}</span>
                             <div>
                               <h6 className='mb-1'>{value.title}</h6>
                               <small className='text-muted'>{value.description}</small>
@@ -233,9 +216,7 @@ export function About() {
           <Col lg={8} className='mx-auto'>
             <Card className='border-0 shadow-sm commitment-card'>
               <Card.Body className='p-5 text-center'>
-                <div className='commitment-icon mb-4'>
-                  🤝
-                </div>
+                <div className='commitment-icon mb-4'>🤝</div>
                 <h3 className='mb-4'>Our Commitment to You</h3>
                 <p className='text-muted mb-4'>
                   We are dedicated to providing you with the best shopping experience possible. From
@@ -246,27 +227,21 @@ export function About() {
                 <div className='commitment-features row g-3'>
                   <div className='col-md-4'>
                     <div className='feature-item p-3 bg-light rounded h-100'>
-                      <div className='text-primary mb-2 feature-icon'>
-                        🛡️
-                      </div>
+                      <div className='text-primary mb-2 feature-icon'>🛡️</div>
                       <h6 className='mb-1'>Secure Shopping</h6>
                       <small className='text-muted'>Your data is protected</small>
                     </div>
                   </div>
                   <div className='col-md-4'>
                     <div className='feature-item p-3 bg-light rounded h-100'>
-                      <div className='text-success mb-2 feature-icon'>
-                        🚚
-                      </div>
+                      <div className='text-success mb-2 feature-icon'>🚚</div>
                       <h6 className='mb-1'>Fast Delivery</h6>
                       <small className='text-muted'>Quick and reliable shipping</small>
                     </div>
                   </div>
                   <div className='col-md-4'>
                     <div className='feature-item p-3 bg-light rounded h-100'>
-                      <div className='text-info mb-2 feature-icon'>
-                        💬
-                      </div>
+                      <div className='text-info mb-2 feature-icon'>💬</div>
                       <h6 className='mb-1'>24/7 Support</h6>
                       <small className='text-muted'>Always here to help</small>
                     </div>

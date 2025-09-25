@@ -1,6 +1,3 @@
-@use 'variables' as *;
-@use 'keyframes' as *;
-
 // Animation utility classes
 .fade-in {
   animation: fadeInUp 0.8s ease forwards;
@@ -135,7 +132,9 @@
   border-radius: $border-radius;
   padding: 0.5rem 1rem;
   border: 2px solid #dee2e6;
-  transition: $transition-fast;
+  transition:
+    all 0.3s ease,
+    flex-grow 0.2s ease;
 
   &.quantity-display-sm {
     min-width: 60px;
@@ -162,6 +161,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  transition: all 0.3s ease;
 
   &.quantity-controls-sm {
     gap: 0.5rem;
@@ -173,7 +173,8 @@
 }
 
 // Container responsive styles for better mobile experience
-@media (max-width: 991px) {
+// Using Bootstrap's lg breakpoint (< 992px) for consistency
+@media (max-width: 991.98px) {
   .container,
   .container-md,
   .container-sm {

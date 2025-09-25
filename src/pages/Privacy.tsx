@@ -1,4 +1,3 @@
-import '../styles/pages/Privacy.scss'
 import { useEffect } from 'react'
 
 import { Badge, Card, Col, Container, Row } from 'react-bootstrap'

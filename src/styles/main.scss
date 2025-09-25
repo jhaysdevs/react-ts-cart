@@ -1,19 +1,14 @@
-// Use variables first (needed by other files)
-@use 'variables' as *;
-
-// Use keyframes (animations)
-@use 'keyframes' as *;
-
-// Use utility classes
-@use 'utilities' as *;
-
-// Use masonry grid styles
-@use 'masonry' as *;
+// Import variables, keyframes, and utilities globally
+@import 'variables';
+@import 'keyframes';
+@import 'utilities';
+@import 'masonry';
 
 // Page-specific styles
-@use 'pages/Home' as *;
-@use 'pages/Store' as *;
-@use 'pages/Cart' as *;
-@use 'pages/About' as *;
-@use 'pages/Privacy' as *;
-@use 'pages/ProductDetail' as *;
+@import 'pages/Home';
+@import 'pages/Store';
+@import 'pages/Cart';
+@import 'pages/About';
+@import 'pages/Privacy';
+@import 'pages/ProductDetail';
+@import 'pages/Checkout';

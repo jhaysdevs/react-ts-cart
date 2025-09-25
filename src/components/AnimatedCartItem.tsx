@@ -1,11 +1,10 @@
 import { useState } from 'react'
 
-import { Button, Card, Stack } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
 import { useShoppingCart } from '../context/ShoppingCartContext'
 import { Product } from '../hooks/useProducts'
-import '../styles/pages/Cart.scss'
 import { formatCurrency } from '../utilities/formatCurrency'
 
 type AnimatedCartItemProps = {
@@ -49,9 +48,15 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
     <Card
       className={`cart-item-card ${isRemoving ? 'removing' : ''} ${isUpdating ? 'updating' : ''}`}>
       <Card.Body>
-        <Stack direction='horizontal' gap={3} className='d-flex align-items-stretch'>
+        <div
+          className='d-flex flex-column flex-md-row align-items-stretch gap-3'
+          style={{ transition: 'all 0.3s ease' }}>
           <div className='product-image-container' onClick={handleProductClick}>
-            <img src={product.image} alt={product.name} />
+            {product.image ? (
+              <img src={product.image} alt={product.name} />
+            ) : (
+              <div className='cart-item-placeholder'>📦</div>
+            )}
           </div>
 
           <div className='me-auto product-details' onClick={handleProductClick}>
@@ -62,7 +67,7 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
             <div className='quantity-controls d-flex align-items-end gap-2'>
               <Button
                 variant='outline-primary'
-                size='md'
+                size='sm'
                 onClick={(e) => {
                   e.stopPropagation()
                   handleDecrease()
@@ -74,7 +79,7 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
               <span className='quantity-display'>{quantity}</span>
               <Button
                 variant='outline-primary'
-                size='md'
+                size='sm'
                 onClick={(e) => {
                   e.stopPropagation()
                   handleIncrease()
@@ -100,7 +105,7 @@ export function AnimatedCartItem({ product, quantity }: AnimatedCartItemProps) {
               Remove
             </Button>
           </div>
-        </Stack>
+        </div>
       </Card.Body>
     </Card>
   )

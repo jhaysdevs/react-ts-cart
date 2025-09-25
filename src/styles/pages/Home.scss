@@ -1,5 +1,4 @@
-@use '../variables' as *;
-@use '../keyframes' as *;
+@use 'sass:color';
 
 .home-page {
   min-height: 100vh;
@@ -115,10 +114,14 @@
 }
 
 .quick-links-card {
-  background: linear-gradient(135deg, $success-color 0%, #20c997 100%);
+  background: linear-gradient(
+    135deg,
+    $light-gray-blue 0%,
+    color.adjust($light-gray-blue, $lightness: -10%) 100%
+  );
   color: white;
   border-radius: 24px;
-  box-shadow: 
+  box-shadow:
     0 20px 60px rgba(40, 167, 69, 0.2),
     0 8px 32px rgba(40, 167, 69, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -136,7 +139,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
+    background:
       radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
       radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
       url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="quick-links-dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.06"/></pattern></defs><rect width="100" height="100" fill="url(%23quick-links-dots)"/></svg>');
@@ -160,13 +163,18 @@
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(1deg); }
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(1deg);
+    }
   }
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 
+    box-shadow:
       0 30px 80px rgba(40, 167, 69, 0.25),
       0 12px 40px rgba(40, 167, 69, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -224,7 +232,7 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
     inset 0 -1px 0 rgba(0, 0, 0, 0.1);
@@ -256,7 +264,7 @@
   &:focus {
     outline: 3px solid rgba(255, 255, 255, 0.8);
     outline-offset: 3px;
-    box-shadow: 
+    box-shadow:
       0 12px 40px rgba(0, 0, 0, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.3),
       0 0 0 1px rgba(255, 255, 255, 0.4);
@@ -270,7 +278,7 @@
   &:focus-visible {
     outline: 3px solid rgba(255, 255, 255, 0.9);
     outline-offset: 3px;
-    box-shadow: 
+    box-shadow:
       0 12px 40px rgba(0, 0, 0, 0.25),
       inset 0 1px 0 rgba(255, 255, 255, 0.4),
       0 0 0 1px rgba(255, 255, 255, 0.5);
@@ -278,11 +286,15 @@
 
   &:hover {
     transform: translateY(-6px) scale(1.05);
-    box-shadow: 
+    box-shadow:
       0 20px 60px rgba(0, 0, 0, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.3),
       inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
     border-color: rgba(255, 255, 255, 0.4);
 
     &::before {
@@ -297,7 +309,7 @@
   &:active {
     transform: translateY(-2px) scale(1.02);
     transition: all 0.1s ease;
-    box-shadow: 
+    box-shadow:
       0 8px 25px rgba(0, 0, 0, 0.15),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
@@ -306,14 +318,14 @@
   &.btn-outline-primary {
     background: linear-gradient(135deg, rgba(0, 123, 255, 0.2) 0%, rgba(0, 123, 255, 0.1) 100%);
     border-color: rgba(0, 123, 255, 0.3);
-    box-shadow: 
+    box-shadow:
       0 8px 32px rgba(0, 123, 255, 0.15),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
 
     &:hover {
       background: linear-gradient(135deg, rgba(0, 123, 255, 0.3) 0%, rgba(0, 123, 255, 0.15) 100%);
       border-color: rgba(0, 123, 255, 0.5);
-      box-shadow: 
+      box-shadow:
         0 20px 60px rgba(0, 123, 255, 0.25),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
@@ -322,14 +334,14 @@
   &.btn-outline-success {
     background: linear-gradient(135deg, rgba(40, 167, 69, 0.2) 0%, rgba(40, 167, 69, 0.1) 100%);
     border-color: rgba(40, 167, 69, 0.3);
-    box-shadow: 
+    box-shadow:
       0 8px 32px rgba(40, 167, 69, 0.15),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
 
     &:hover {
       background: linear-gradient(135deg, rgba(40, 167, 69, 0.3) 0%, rgba(40, 167, 69, 0.15) 100%);
       border-color: rgba(40, 167, 69, 0.5);
-      box-shadow: 
+      box-shadow:
         0 20px 60px rgba(40, 167, 69, 0.25),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
@@ -338,14 +350,18 @@
   &.btn-outline-info {
     background: linear-gradient(135deg, rgba(23, 162, 184, 0.2) 0%, rgba(23, 162, 184, 0.1) 100%);
     border-color: rgba(23, 162, 184, 0.3);
-    box-shadow: 
+    box-shadow:
       0 8px 32px rgba(23, 162, 184, 0.15),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
 
     &:hover {
-      background: linear-gradient(135deg, rgba(23, 162, 184, 0.3) 0%, rgba(23, 162, 184, 0.15) 100%);
+      background: linear-gradient(
+        135deg,
+        rgba(23, 162, 184, 0.3) 0%,
+        rgba(23, 162, 184, 0.15) 100%
+      );
       border-color: rgba(23, 162, 184, 0.5);
-      box-shadow: 
+      box-shadow:
         0 20px 60px rgba(23, 162, 184, 0.25),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
@@ -353,14 +369,15 @@
 
   // Pulse animation for attention
   @keyframes pulse-glow {
-    0%, 100% {
-      box-shadow: 
+    0%,
+    100% {
+      box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.2),
         0 0 0 0 rgba(255, 255, 255, 0.4);
     }
     50% {
-      box-shadow: 
+      box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.2),
         0 0 0 8px rgba(255, 255, 255, 0.1);

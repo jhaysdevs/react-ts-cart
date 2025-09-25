@@ -3,7 +3,6 @@ import { Container, Row, Col, Card, Form, Button, Alert, Spinner, Badge } from '
 import { useNavigate } from 'react-router-dom'
 
 import { useShoppingCart } from '../context/ShoppingCartContext'
-import '../styles/pages/Checkout.scss'
 import { CheckoutFormData, CheckoutFormErrors, OrderSummary, CheckoutStep } from '../types/checkout'
 import { formatCurrency } from '../utilities/formatCurrency'
 import {

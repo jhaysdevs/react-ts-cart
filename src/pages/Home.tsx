@@ -3,8 +3,6 @@ import { useEffect } from 'react'
 import { Badge, Button, Card, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-import '../styles/pages/Home.scss'
-
 export function Home() {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
