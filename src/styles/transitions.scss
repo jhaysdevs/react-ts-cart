@@ -1,0 +1,101 @@
+// Ease in curves
+$ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+$ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+$ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715);
+$ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+$ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+$ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+
+// Ease out curves
+$ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+$ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+$ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+$ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1);
+$ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+$ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
+$ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+// Ease in out curves
+$ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+$ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+$ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+$ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+$ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+$ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+$ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+$ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// Material design easing
+$ease-material-standard: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-material-decelerate: cubic-bezier(0, 0, 0.2, 1);
+$ease-material-accelerate: cubic-bezier(0.4, 0, 1, 1);
+$ease-material-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+
+// Animista easing
+$ease-animista-1: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$ease-animista-2: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$ease-animista-3: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$ease-animista-4: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$ease-animista-5: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+$ease-animista-6: cubic-bezier(0.165, 0.84, 0.44, 1);
+$ease-animista-7: cubic-bezier(0.77, 0, 0.175, 1);
+$ease-animista-8: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// Penner easing (Robert Penner's easing functions)
+$ease-penner-linear: cubic-bezier(0, 0, 1, 1);
+$ease-penner-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+$ease-penner-ease-in: cubic-bezier(0.42, 0, 1, 1);
+$ease-penner-ease-out: cubic-bezier(0, 0, 0.58, 1);
+$ease-penner-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+
+// Bounce easing
+$ease-bounce-in: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$ease-bounce-out: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$ease-bounce-in-out: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// Elastic easing
+$ease-elastic-in: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+$ease-elastic-out: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+$ease-elastic-in-out: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+// Spring easing
+$ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$ease-spring-bouncy: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$ease-spring-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+// UI/UX specific easing
+$ease-ui-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$ease-ui-snappy: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-ui-bouncy: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$ease-ui-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+// Micro-interactions
+$ease-micro-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$ease-micro-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$ease-micro-snappy: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-micro-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+// Performance optimized
+$ease-performance: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$ease-performance-fast: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-performance-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+// Accessibility friendly
+$ease-reduced-motion: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$ease-motion-safe: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+// Commonly used combinations
+$ease-fade-in: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$ease-fade-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$ease-slide-in: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$ease-slide-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$ease-scale-in: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$ease-scale-out: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// Legacy support
+$ease-legacy: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$ease-legacy-fast: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-legacy-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
