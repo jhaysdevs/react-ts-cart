@@ -38,7 +38,7 @@
 }
 
 .privacy-card {
-  transition: $transition-slow;
+  @include animate-all-slow();
   border-radius: 12px !important;
 
   &:hover {

@@ -53,7 +53,7 @@
 .mission-card,
 .values-card,
 .commitment-card {
-  transition: $transition-slow;
+  @include animate-all-slow();
   border-radius: 15px !important;
 
   &:hover {
@@ -63,7 +63,7 @@
 }
 
 .stat-card {
-  transition: $transition-slow;
+  @include animate-all-slow();
   border-radius: 12px !important;
 
   &:hover {
@@ -102,7 +102,7 @@
 }
 
 .feature-item {
-  transition: $transition-slow;
+  @include animate-all-slow();
 
   &:hover {
     transform: translateY(-3px);

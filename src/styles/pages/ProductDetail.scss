@@ -72,7 +72,7 @@
   border: none;
   border-radius: 15px;
   box-shadow: $shadow-lg;
-  transition: $transition-slow;
+  @include animate-all-slow();
   overflow: hidden;
 
   &:hover {
@@ -81,7 +81,7 @@
   }
 
   .card-img {
-    transition: $transition-slow;
+    @include animate-all-slow();
     border-radius: 15px 15px 0 0;
 
     &:hover {
@@ -95,7 +95,7 @@
   border: none;
   border-radius: 15px;
   box-shadow: $shadow-lg;
-  transition: $transition-slow;
+  @include animate-all-slow();
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
 
   &:hover {
@@ -173,7 +173,7 @@
   padding: 1rem 2rem;
   font-weight: 700;
   font-size: 1.1rem;
-  transition: $transition-slow;
+  @include animate-all-slow();
   box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
   animation: slideInUp 0.6s ease-out 0.6s both;
 
@@ -215,7 +215,7 @@
   border-radius: 12px;
   padding: 0.75rem 1.5rem;
   font-weight: 600;
-  transition: $transition-slow;
+  @include animate-all-slow();
   box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
   animation: slideInUp 0.6s ease-out 0.8s both;
 

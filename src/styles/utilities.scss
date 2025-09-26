@@ -11,7 +11,7 @@
 
 // Transition utility classes
 .transition {
-  transition: $transition-slow;
+  @include animate-all-slow();
 }
 
 .transition-fast {
