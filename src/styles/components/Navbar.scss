@@ -1,0 +1,33 @@
+@use '../variables' as *;
+
+// Navbar Cart Button Styles
+.cart-button {
+  width: 3rem;
+  height: 3rem;
+}
+
+.cart-quantity-badge {
+  min-width: 1.2rem;
+  min-height: 1.2rem;
+  padding: 0.15rem;
+  bottom: 0;
+  right: 0;
+  transform: translate(25%, 25%);
+  font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+  line-height: 1;
+  aspect-ratio: 1;
+}
+
+// Dark Mode Toggle Button
+.theme-toggle {
+  transition: all 0.3s ease;
+  border: none;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+}
