@@ -1,0 +1,141 @@
+// Animation mixins for enterprise-level applications
+// Provides flexible animation utilities with CSS property and easing support
+
+// Base animation mixin - accepts any CSS property and easing curve
+@mixin animate($property, $easing: $ease-out-cubic, $duration: 0.3s) {
+  transition: $property $duration $easing;
+}
+
+// Multiple properties animation mixin
+@mixin animate-multiple($properties, $easing: $ease-out-cubic, $duration: 0.3s) {
+  $transitions: ();
+  @each $property in $properties {
+    $transitions: append($transitions, $property $duration $easing, comma);
+  }
+  transition: $transitions;
+}
+
+// All properties animation mixin
+@mixin animate-all($easing: $ease-out-cubic, $duration: 0.3s) {
+  transition: all $duration $easing;
+}
+
+// Fast animation variants
+@mixin animate-fast($property, $easing: $ease-out-cubic) {
+  @include animate($property, $easing, 0.2s);
+}
+
+@mixin animate-multiple-fast($properties, $easing: $ease-out-cubic) {
+  @include animate-multiple($properties, $easing, 0.2s);
+}
+
+@mixin animate-all-fast($easing: $ease-out-cubic) {
+  @include animate-all($easing, 0.2s);
+}
+
+// Slow animation variants
+@mixin animate-slow($property, $easing: $ease-out-cubic) {
+  @include animate($property, $easing, 0.5s);
+}
+
+@mixin animate-multiple-slow($properties, $easing: $ease-out-cubic) {
+  @include animate-multiple($properties, $easing, 0.5s);
+}
+
+@mixin animate-all-slow($easing: $ease-out-cubic) {
+  @include animate-all($easing, 0.5s);
+}
+
+// Custom duration animation mixin
+@mixin animate-custom($property, $easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate($property, $easing, $duration);
+}
+
+// Hover animation mixin
+@mixin animate-hover($property, $easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate($property, $easing, $duration);
+
+  &:hover {
+    // Hover state will be defined by the consuming component
+  }
+}
+
+// Focus animation mixin
+@mixin animate-focus($property, $easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate($property, $easing, $duration);
+
+  &:focus {
+    // Focus state will be defined by the consuming component
+  }
+}
+
+// Active animation mixin
+@mixin animate-active($property, $easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate($property, $easing, $duration);
+
+  &:active {
+    // Active state will be defined by the consuming component
+  }
+}
+
+// Transform animation mixins
+@mixin animate-transform($easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate(transform, $easing, $duration);
+}
+
+@mixin animate-opacity($easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate(opacity, $easing, $duration);
+}
+
+@mixin animate-color($easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate(color, $easing, $duration);
+}
+
+@mixin animate-background($easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate(background-color, $easing, $duration);
+}
+
+@mixin animate-border($easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate(border-color, $easing, $duration);
+}
+
+@mixin animate-shadow($easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate(box-shadow, $easing, $duration);
+}
+
+// Layout animation mixins
+@mixin animate-width($easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate(width, $easing, $duration);
+}
+
+@mixin animate-height($easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate(height, $easing, $duration);
+}
+
+@mixin animate-position($easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate-multiple((top, right, bottom, left), $easing, $duration);
+}
+
+// Performance-optimized mixins
+@mixin animate-gpu($property, $easing: $ease-out-cubic, $duration: 0.3s) {
+  @include animate($property, $easing, $duration);
+  transform: translateZ(0); // Force GPU acceleration
+  backface-visibility: hidden;
+}
+
+// Accessibility-friendly mixins
+@mixin animate-reduced-motion($property, $easing: $ease-reduced-motion, $duration: 0.3s) {
+  @media (prefers-reduced-motion: no-preference) {
+    @include animate($property, $easing, $duration);
+  }
+}
+
+@mixin animate-motion-safe($property, $easing: $ease-motion-safe, $duration: 0.3s) {
+  @media (prefers-reduced-motion: no-preference) {
+    @include animate($property, $easing, $duration);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    @include animate($property, $ease-reduced-motion, 0.1s);
+  }
+}
