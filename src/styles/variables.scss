@@ -57,3 +57,53 @@ $breakpoint-md: 992px;
 $breakpoint-lg: 1200px;
 $breakpoint-xl: 1400px;
 $breakpoint-xxl: 1600px;
+
+// Enterprise Theme Colors
+// Light Theme (Default)
+$light-bg-primary: #ffffff;
+$light-bg-secondary: #f8f9fa;
+$light-bg-tertiary: #e9ecef;
+$light-bg-quaternary: #dee2e6;
+$light-text-primary: #212529;
+$light-text-secondary: #495057;
+$light-text-tertiary: #6c757d;
+$light-text-quaternary: #adb5bd;
+$light-border-primary: #dee2e6;
+$light-border-secondary: #e9ecef;
+$light-border-tertiary: #f1f3f4;
+
+// Dark Theme
+$dark-bg-primary: #0d1117;
+$dark-bg-secondary: #161b22;
+$dark-bg-tertiary: #21262d;
+$dark-bg-quaternary: #30363d;
+$dark-text-primary: #f0f6fc;
+$dark-text-secondary: #c9d1d9;
+$dark-text-tertiary: #8b949e;
+$dark-text-quaternary: #6e7681;
+$dark-border-primary: #30363d;
+$dark-border-secondary: #21262d;
+$dark-border-tertiary: #161b22;
+
+// Semantic Colors (Theme-aware)
+$theme-primary: var(--bs-primary);
+$theme-success: var(--bs-success);
+$theme-info: var(--bs-info);
+$theme-warning: var(--bs-warning);
+$theme-danger: var(--bs-danger);
+$theme-secondary: var(--bs-secondary);
+$theme-light: var(--bs-light);
+$theme-dark: var(--bs-dark);
+
+// Surface Colors (Theme-aware)
+$theme-bg-primary: var(--theme-bg-primary);
+$theme-bg-secondary: var(--theme-bg-secondary);
+$theme-bg-tertiary: var(--theme-bg-tertiary);
+$theme-bg-quaternary: var(--theme-bg-quaternary);
+$theme-text-primary: var(--theme-text-primary);
+$theme-text-secondary: var(--theme-text-secondary);
+$theme-text-tertiary: var(--theme-text-tertiary);
+$theme-text-quaternary: var(--theme-text-quaternary);
+$theme-border-primary: var(--theme-border-primary);
+$theme-border-secondary: var(--theme-border-secondary);
+$theme-border-tertiary: var(--theme-border-tertiary);

@@ -1,0 +1,273 @@
+// Starting theme-specific styles (without Radix or other frameworks)
+
+// Light Theme (Default)
+:root,
+[data-bs-theme='light'] {
+  // Background Colors
+  --theme-bg-primary: #{$light-bg-primary};
+  --theme-bg-secondary: #{$light-bg-secondary};
+  --theme-bg-tertiary: #{$light-bg-tertiary};
+  --theme-bg-quaternary: #{$light-bg-quaternary};
+
+  // Text Colors
+  --theme-text-primary: #{$light-text-primary};
+  --theme-text-secondary: #{$light-text-secondary};
+  --theme-text-tertiary: #{$light-text-tertiary};
+  --theme-text-quaternary: #{$light-text-quaternary};
+
+  // Border Colors
+  --theme-border-primary: #{$light-border-primary};
+  --theme-border-secondary: #{$light-border-secondary};
+  --theme-border-tertiary: #{$light-border-tertiary};
+
+  // Bootstrap Color Overrides for Light Theme
+  --bs-body-bg: #{$light-bg-primary};
+  --bs-body-color: #{$light-text-primary};
+  --bs-secondary-bg: #{$light-bg-secondary};
+  --bs-tertiary-bg: #{$light-bg-tertiary};
+  --bs-emphasis-color: #{$light-text-primary};
+  --bs-secondary-color: #{$light-text-secondary};
+  --bs-tertiary-color: #{$light-text-tertiary};
+  --bs-border-color: #{$light-border-primary};
+  --bs-border-color-translucent: #{rgba($light-text-primary, 0.175)};
+
+  // Component-specific overrides
+  --bs-card-bg: #{$light-bg-primary};
+  --bs-modal-bg: #{$light-bg-primary};
+  --bs-offcanvas-bg: #{$light-bg-primary};
+  --bs-dropdown-bg: #{$light-bg-primary};
+  --bs-popover-bg: #{$light-bg-primary};
+  --bs-tooltip-bg: #{$dark-bg-primary};
+  --bs-tooltip-color: #{$dark-text-primary};
+
+  // Form controls
+  --bs-form-control-bg: #{$light-bg-primary};
+  --bs-form-control-color: #{$light-text-primary};
+  --bs-form-control-border-color: #{$light-border-primary};
+  --bs-form-control-focus-border-color: #{$primary-color};
+  --bs-form-control-focus-box-shadow: 0 0 0 0.25rem #{rgba($primary-color, 0.25)};
+
+  // Navbar
+  --bs-navbar-color: #{$light-text-primary};
+  --bs-navbar-hover-color: #{$primary-color};
+  --bs-navbar-disabled-color: #{$light-text-tertiary};
+  --bs-navbar-active-color: #{$primary-color};
+  --bs-navbar-brand-color: #{$light-text-primary};
+  --bs-navbar-brand-hover-color: #{$primary-color};
+  --bs-navbar-toggler-border-color: #{$light-border-primary};
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='#{$light-text-primary}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+  // Shadows (adjusted for light theme)
+  --bs-box-shadow: #{$shadow-sm};
+  --bs-box-shadow-sm: #{$shadow-sm};
+  --bs-box-shadow-lg: #{$shadow-lg};
+  --bs-box-shadow-xl: #{$shadow-xl};
+}
+
+// Dark Theme
+[data-bs-theme='dark'] {
+  // Background Colors
+  --theme-bg-primary: #{$dark-bg-primary};
+  --theme-bg-secondary: #{$dark-bg-secondary};
+  --theme-bg-tertiary: #{$dark-bg-tertiary};
+  --theme-bg-quaternary: #{$dark-bg-quaternary};
+
+  // Text Colors
+  --theme-text-primary: #{$dark-text-primary};
+  --theme-text-secondary: #{$dark-text-secondary};
+  --theme-text-tertiary: #{$dark-text-tertiary};
+  --theme-text-quaternary: #{$dark-text-quaternary};
+
+  // Border Colors
+  --theme-border-primary: #{$dark-border-primary};
+  --theme-border-secondary: #{$dark-border-secondary};
+  --theme-border-tertiary: #{$dark-border-tertiary};
+
+  // Bootstrap Color Overrides for Dark Theme
+  --bs-body-bg: #{$dark-bg-primary};
+  --bs-body-color: #{$dark-text-primary};
+  --bs-secondary-bg: #{$dark-bg-secondary};
+  --bs-tertiary-bg: #{$dark-bg-tertiary};
+  --bs-emphasis-color: #{$dark-text-primary};
+  --bs-secondary-color: #{$dark-text-secondary};
+  --bs-tertiary-color: #{$dark-text-tertiary};
+  --bs-border-color: #{$dark-border-primary};
+  --bs-border-color-translucent: #{rgba($dark-text-primary, 0.175)};
+
+  // Component-specific overrides
+  --bs-card-bg: #{$dark-bg-secondary};
+  --bs-modal-bg: #{$dark-bg-secondary};
+  --bs-offcanvas-bg: #{$dark-bg-secondary};
+  --bs-dropdown-bg: #{$dark-bg-secondary};
+  --bs-popover-bg: #{$dark-bg-secondary};
+  --bs-tooltip-bg: #{$light-bg-primary};
+  --bs-tooltip-color: #{$light-text-primary};
+
+  // Form controls
+  --bs-form-control-bg: #{$dark-bg-secondary};
+  --bs-form-control-color: #{$dark-text-primary};
+  --bs-form-control-border-color: #{$dark-border-primary};
+  --bs-form-control-focus-border-color: #{$primary-color};
+  --bs-form-control-focus-box-shadow: 0 0 0 0.25rem #{rgba($primary-color, 0.25)};
+
+  // Navbar
+  --bs-navbar-color: #{$dark-text-primary};
+  --bs-navbar-hover-color: #{$primary-color};
+  --bs-navbar-disabled-color: #{$dark-text-tertiary};
+  --bs-navbar-active-color: #{$primary-color};
+  --bs-navbar-brand-color: #{$dark-text-primary};
+  --bs-navbar-brand-hover-color: #{$primary-color};
+  --bs-navbar-toggler-border-color: #{$dark-border-primary};
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='#{$dark-text-primary}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+
+  // Shadows (adjusted for dark theme)
+  --bs-box-shadow: 0 0.125rem 0.25rem #{rgba(0, 0, 0, 0.4)};
+  --bs-box-shadow-sm: 0 0.125rem 0.25rem #{rgba(0, 0, 0, 0.3)};
+  --bs-box-shadow-lg: 0 1rem 3rem #{rgba(0, 0, 0, 0.4)};
+  --bs-box-shadow-xl: 0 1.5rem 4rem #{rgba(0, 0, 0, 0.5)};
+}
+
+// Global theme-aware styles
+body {
+  background-color: var(--theme-bg-primary);
+  color: var(--theme-text-primary);
+  transition:
+    background-color $transition-fast,
+    color $transition-fast;
+}
+
+// Theme-aware utility classes
+.bg-theme-primary {
+  background-color: var(--theme-bg-primary) !important;
+}
+.bg-theme-secondary {
+  background-color: var(--theme-bg-secondary) !important;
+}
+.bg-theme-tertiary {
+  background-color: var(--theme-bg-tertiary) !important;
+}
+.bg-theme-quaternary {
+  background-color: var(--theme-bg-quaternary) !important;
+}
+
+.text-theme-primary {
+  color: var(--theme-text-primary) !important;
+}
+.text-theme-secondary {
+  color: var(--theme-text-secondary) !important;
+}
+.text-theme-tertiary {
+  color: var(--theme-text-tertiary) !important;
+}
+.text-theme-quaternary {
+  color: var(--theme-text-quaternary) !important;
+}
+
+.border-theme-primary {
+  border-color: var(--theme-border-primary) !important;
+}
+.border-theme-secondary {
+  border-color: var(--theme-border-secondary) !important;
+}
+.border-theme-tertiary {
+  border-color: var(--theme-border-tertiary) !important;
+}
+
+// Enhanced component styling for theme support
+.card {
+  background-color: var(--theme-bg-primary);
+  border-color: var(--theme-border-primary);
+  color: var(--theme-text-primary);
+  transition:
+    background-color $transition-fast,
+    border-color $transition-fast,
+    color $transition-fast;
+}
+
+.modal-content {
+  background-color: var(--theme-bg-primary);
+  border-color: var(--theme-border-primary);
+  color: var(--theme-text-primary);
+}
+
+.dropdown-menu {
+  background-color: var(--theme-bg-primary);
+  border-color: var(--theme-border-primary);
+  color: var(--theme-text-primary);
+}
+
+.navbar {
+  background-color: var(--theme-bg-primary) !important;
+  border-color: var(--theme-border-primary);
+  color: var(--theme-text-primary);
+}
+
+.btn {
+  transition:
+    background-color $transition-fast,
+    border-color $transition-fast,
+    color $transition-fast;
+}
+
+.form-control,
+.form-select {
+  background-color: var(--theme-bg-primary);
+  border-color: var(--theme-border-primary);
+  color: var(--theme-text-primary);
+  transition:
+    background-color $transition-fast,
+    border-color $transition-fast,
+    color $transition-fast;
+
+  &:focus {
+    background-color: var(--theme-bg-primary);
+    border-color: var(--bs-form-control-focus-border-color);
+    color: var(--theme-text-primary);
+  }
+}
+
+// Table styling
+.table {
+  --bs-table-bg: var(--theme-bg-primary);
+  --bs-table-color: var(--theme-text-primary);
+  --bs-table-border-color: var(--theme-border-primary);
+  --bs-table-striped-bg: var(--theme-bg-secondary);
+  --bs-table-hover-bg: var(--theme-bg-tertiary);
+}
+
+// List group styling
+.list-group-item {
+  background-color: var(--theme-bg-primary);
+  border-color: var(--theme-border-primary);
+  color: var(--theme-text-primary);
+}
+
+// Alert styling
+.alert {
+  border-color: var(--theme-border-primary);
+}
+
+// Progress bar styling
+.progress {
+  background-color: var(--theme-bg-tertiary);
+}
+
+// Pagination styling
+.pagination {
+  .page-link {
+    background-color: var(--theme-bg-primary);
+    border-color: var(--theme-border-primary);
+    color: var(--theme-text-primary);
+
+    &:hover {
+      background-color: var(--theme-bg-secondary);
+      border-color: var(--theme-border-primary);
+      color: var(--theme-text-primary);
+    }
+  }
+
+  .page-item.active .page-link {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+  }
+}
