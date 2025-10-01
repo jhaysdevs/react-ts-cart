@@ -1,7 +1,11 @@
 // Import variables, keyframes, and utilities globally
 @import 'variables';
+@import 'theme';
 @import 'easings';
 @import 'keyframes';
+
+// Components
+@import 'components/Navbar';
 
 // Mixins
 @import 'mixins/animations';

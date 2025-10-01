@@ -43,7 +43,7 @@ ThemeManager.getInstance()
 
 // Export for React components
 export const theme = () => ThemeManager.getInstance().getCurrentTheme()
-export const toggleTheme = (isDark: boolean, setIsDark: (dark: boolean) => void) => {
+export const toggleTheme = (setIsDark: (dark: boolean) => void) => {
   ThemeManager.getInstance().toggleTheme()
   setIsDark(ThemeManager.getInstance().getCurrentTheme() === 'dark')
 }
